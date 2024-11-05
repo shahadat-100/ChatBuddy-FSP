@@ -13,14 +13,21 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var UserNameTxt: UITextField!
     @IBOutlet weak var emailTxt: UITextField!
     @IBOutlet weak var passwordTxt: UITextField!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         UserNameTxt.delegate = self
         emailTxt.delegate = self
         passwordTxt.delegate = self
-       // UserNameTxt.becomeFirstResponder()
-
+        
+      
+    
+        
+        
+        
+       
     }
     
     @IBAction func loginButton(_ sender: UIButton) {
@@ -114,7 +121,6 @@ extension LoginViewController
         return hasUpperCase && hasLowerCase && hasNumber && hasSpecialCharecter
     }
     
-
 
 }
 
