@@ -6,11 +6,12 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class RegisterViewController: UIViewController {
 
-    @IBOutlet weak var fullNametxt: UITextField!
-    @IBOutlet weak var UserNameTxt: UITextField!
+    @IBOutlet weak var firstName: UITextField!
+    @IBOutlet weak var lastName: UITextField!
     @IBOutlet weak var emailText: UITextField!
     @IBOutlet weak var passwordText: UITextField!
     @IBOutlet weak var confirmpasswordText: UITextField!
@@ -18,8 +19,8 @@ class RegisterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        fullNametxt.delegate = self
-        UserNameTxt.delegate = self
+        firstName.delegate = self
+        lastName.delegate = self
         emailText.delegate = self
         passwordText.delegate = self
         confirmpasswordText.delegate = self
@@ -30,27 +31,36 @@ class RegisterViewController: UIViewController {
 
     @IBAction func singUpbutton(_ sender: UIButton) {
         
-        fullNametxt.resignFirstResponder()
-        UserNameTxt.resignFirstResponder()
+        firstName.resignFirstResponder()
+        lastName.resignFirstResponder()
         emailText.resignFirstResponder()
         passwordText.resignFirstResponder()
         confirmpasswordText.resignFirstResponder()
         
         
-        guard let fullname = fullNametxt.text, !fullname.isEmpty else
+        guard let firstName = firstName.text, !firstName.isEmpty else
         {
-            showAlert(title: "full name")
+            showAlert(title: "First name")
             return
         }
-        guard let user = UserNameTxt.text , !user.isEmpty else {
-            showAlert(title: "user")
+        
+        guard let lastName = lastName.text , !lastName.isEmpty else {
+            showAlert(title: "Last name")
             return
         }
+        
         guard let email = emailText.text ,!email.isEmpty
         else{
             showAlert(title: "email")
             return
         }
+        
+        if !isValidEmail(email)
+        {
+            showAlert1(title: "Invalid email format." )
+            return
+        }
+        
         guard let password = passwordText.text , !password.isEmpty else
         {
             showAlert(title: "password")
@@ -63,17 +73,13 @@ class RegisterViewController: UIViewController {
             return
         }
         
-        if !isValidEmail(email)
-        {
-            showAlert1(title: "Invalid email format." )
-            return
-        }
-        if password.count < 8 && !isValidPassword(password)
+        if password.count >= 8 && !isValidPassword(password)
         {
             showAlert1(title:  "Password must include uppercase, lowercase, number, and symbol.")
             return
         }
-        if confirmPass.count < 8 && !isValidPassword(confirmPass)
+        
+        if !isValidPassword(confirmPass)
         {
             showAlert1(title:  "Password must include uppercase, lowercase, number, and symbol.")
             return
@@ -83,16 +89,34 @@ class RegisterViewController: UIViewController {
         if !isSamePass(pass: password, pass1: confirmPass)
         {
             showAlert1(title: "Password does not match!")
+            return
         }
         
+        if password.count < 8
+        {
+            showAlert1(title: "Password must be at least 8 characters long.")
+            return
+        }
+        // register by firebase
         
-        //navigate to login
+        FirebaseAuth.Auth.auth().createUser(withEmail: email, password: confirmPass) { authResult , error in
+            
+            guard let result = authResult, error == nil else
+            {
+                print("Got an error Creating user!")
+                return
+            }
+            let user = result.user
+            print("created user: \(user)")
+        }
+        
         
         self.navigationController?.popViewController(animated: true)
         
     }
     
     @IBAction func alereadyhavAccBUtton(_ sender: UIButton) {
+        
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -143,6 +167,7 @@ extension RegisterViewController
         return pass == pass1
     }
     
+    // check is email valid or not!
     private func isValidEmail(_ email: String) -> Bool {
         let emailPattern = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$"
         return NSPredicate(format: "SELF MATCHES %@", emailPattern).evaluate(with: email)
@@ -155,11 +180,11 @@ extension RegisterViewController:UITextFieldDelegate
 {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
-        if textField == fullNametxt
+        if textField == firstName
         {
-            UserNameTxt.becomeFirstResponder()
+            lastName.becomeFirstResponder()
         }
-        else if textField == UserNameTxt
+        else if textField == lastName
         {
             emailText.becomeFirstResponder()
         }else if textField == emailText

@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import FirebaseAuth
 class LoginViewController: UIViewController {
 
     
@@ -21,11 +21,6 @@ class LoginViewController: UIViewController {
         UserNameTxt.delegate = self
         emailTxt.delegate = self
         passwordTxt.delegate = self
-        
-      
-    
-        
-        
         
        
     }
@@ -56,14 +51,33 @@ class LoginViewController: UIViewController {
             showAlert1(title: "Invalid email format." )
             return
         }
-        if password.count < 8 && !isValidPassword(password)
+        if !isValidPassword(password)
         {
             showAlert1(title:  "Password must include uppercase, lowercase, number, and symbol.")
             return
         }
+        if password.count < 8
+        {
+            showAlert1(title: "Password must be at least 8 characters long.")
+            return
+        }
         
-        //firebase code
         
+        // log in by firebase
+        
+        FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password) { AuthDataResult, error in
+            guard let result = AuthDataResult, error == nil else
+            {
+                print("Getting error while SingIn ")
+                return
+            }
+            let user = result.user
+            print("logged in seccessfully with user \(user)")
+        }
+        
+        guard let vc = self.storyboard?.instantiateViewController(identifier: "photoAddViewController") as? photoAddViewController
+        else {return}
+        self.navigationController?.pushViewController(vc, animated: true)
         
     }
     
