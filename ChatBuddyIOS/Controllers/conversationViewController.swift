@@ -18,13 +18,13 @@ class conversationViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
       
-        validateAuth()
+        is_UserSingedIn()
    
     }
     
     
     
-    private func validateAuth()
+    private func is_UserSingedIn()
     {
         if FirebaseAuth.Auth.auth().currentUser == nil
         {
@@ -37,25 +37,5 @@ class conversationViewController: UIViewController {
         }
     }
 
-    @IBAction func demo(_ sender: UIButton) {
-      
-        do
-        {
-            try   FirebaseAuth.Auth.auth().signOut()
-            guard let vc = self.storyboard?.instantiateViewController(identifier: "LoginViewController") as? LoginViewController else {return}
-            
-            let nav = UINavigationController(rootViewController: vc)
-            nav.modalPresentationStyle = .fullScreen
-            present(nav, animated: false)
-            
-        }catch let error
-        {
-            print(error)
-        }
-        
-        
-    }
-    
-    
-  
+
 }

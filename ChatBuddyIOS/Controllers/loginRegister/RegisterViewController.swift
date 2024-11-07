@@ -229,7 +229,7 @@ extension RegisterViewController:UITextFieldDelegate
         }
         else if textField == confirmpasswordText
         {
-            singUpbutton(UIButton().self)
+            confirmpasswordText.resignFirstResponder()
             
         }
         return true

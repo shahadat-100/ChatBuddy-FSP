@@ -28,25 +28,31 @@ extension FirebaseDatabaseManager
         return safe_email
     }
     
-    public func insertUser(with user:ChatAppUser)
-    {
-        var safe_email: String
+    public func insertUser(with user: ChatAppUser) {
         
-        safe_email = safeEmailAdress(_emailAddress:user.emailAddress )
-     
-        self.database_ref.child("users").child(safe_email).setValue([
-            "first_Name" : user.firstName,
-            "last_Name" : user.lastName,
-            "user_Name" : user.userName
-        ]){ error,ref in
-            if let error = error {
-                print("Error saving data while saving in database")
+        let safeEmail = safeEmailAdress(_emailAddress: user.emailAddress)
+      
+        let userRef = self.database_ref.child("users").child(safeEmail)
+        
+        // Check if the user already exists
+        userRef.observeSingleEvent(of: .value) { snapshot in
+            if snapshot.exists() {
+                print("User data with this email already exists.")
             } else {
-                print("Data saved successfully in Database!")
+                // Insert new user data
+                userRef.setValue([
+                    "first_Name": user.firstName,
+                    "last_Name": user.lastName,
+                    "user_Name": user.userName
+                ]) { error, _ in
+                    if let error = error {
+                        print("Error saving data to database: \(error)")
+                    } else {
+                        print("Data saved successfully in Database!")
+                    }
+                }
             }
         }
-        
-    
     }
-
+     
 }

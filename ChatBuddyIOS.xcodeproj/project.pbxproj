@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EF290FD42CDD19D3008001C5 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = EF290FD32CDD19D3008001C5 /* GoogleSignIn */; };
+		EF290FD62CDD19D3008001C5 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = EF290FD52CDD19D3008001C5 /* GoogleSignInSwift */; };
 		EF3EE8492CDA884E003D94E8 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = EF3EE8482CDA884E003D94E8 /* FirebaseAnalytics */; };
 		EF3EE84B2CDA884E003D94E8 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = EF3EE84A2CDA884E003D94E8 /* FirebaseAnalyticsOnDeviceConversion */; };
 		EF3EE84D2CDA884E003D94E8 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = EF3EE84C2CDA884E003D94E8 /* FirebaseAnalyticsWithoutAdIdSupport */; };
@@ -67,11 +69,13 @@
 				EF3EE8492CDA884E003D94E8 /* FirebaseAnalytics in Frameworks */,
 				EF3EE85F2CDA884E003D94E8 /* FirebaseFirestore in Frameworks */,
 				EF3EE84B2CDA884E003D94E8 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
+				EF290FD42CDD19D3008001C5 /* GoogleSignIn in Frameworks */,
 				EF3EE8692CDA884E003D94E8 /* FirebaseInstallations in Frameworks */,
 				EFF2CEA12CD90A4700E347B2 /* IQKeyboardManagerSwift in Frameworks */,
 				EF3EE84F2CDA884E003D94E8 /* FirebaseAppCheck in Frameworks */,
 				EF3EE8672CDA884E003D94E8 /* FirebaseInAppMessaging-Beta in Frameworks */,
 				EF3EE84D2CDA884E003D94E8 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
+				EF290FD62CDD19D3008001C5 /* GoogleSignInSwift in Frameworks */,
 				EF3EE8532CDA884E003D94E8 /* FirebaseAuth in Frameworks */,
 				EF3EE8652CDA884E003D94E8 /* FirebaseFunctionsCombine-Community in Frameworks */,
 				EF3EE8752CDA884E003D94E8 /* FirebaseStorageCombine-Community in Frameworks */,
@@ -156,6 +160,8 @@
 				EF3EE8722CDA884E003D94E8 /* FirebaseStorage */,
 				EF3EE8742CDA884E003D94E8 /* FirebaseStorageCombine-Community */,
 				EF3EE8762CDA884E003D94E8 /* FirebaseVertexAI */,
+				EF290FD32CDD19D3008001C5 /* GoogleSignIn */,
+				EF290FD52CDD19D3008001C5 /* GoogleSignInSwift */,
 			);
 			productName = ChatBuddyIOS;
 			productReference = EFF2CE872CD909CE00E347B2 /* ChatBuddyIOS.app */;
@@ -188,6 +194,7 @@
 			packageReferences = (
 				EFF2CE9F2CD90A4700E347B2 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				EF3EE8472CDA884E003D94E8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				EF290FD22CDD19D3008001C5 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = EFF2CE882CD909CE00E347B2 /* Products */;
@@ -417,6 +424,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		EF290FD22CDD19D3008001C5 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
 		EF3EE8472CDA884E003D94E8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -436,6 +451,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		EF290FD32CDD19D3008001C5 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EF290FD22CDD19D3008001C5 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		EF290FD52CDD19D3008001C5 /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EF290FD22CDD19D3008001C5 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
+		};
 		EF3EE8482CDA884E003D94E8 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = EF3EE8472CDA884E003D94E8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

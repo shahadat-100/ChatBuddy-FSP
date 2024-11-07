@@ -7,19 +7,23 @@
 
 import UIKit
 import FirebaseAuth
+import GoogleSignIn
+import FirebaseCore
 class LoginViewController: UIViewController {
     
     
-   
+    
+    @IBOutlet weak var googoleSingin: UIButton!
     @IBOutlet weak var emailTxt: UITextField!
     @IBOutlet weak var passwordTxt: UITextField!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         emailTxt.delegate = self
         passwordTxt.delegate = self
+        
+   
         
         
     }
@@ -91,9 +95,65 @@ class LoginViewController: UIViewController {
         
         guard let vc =  self.storyboard?.instantiateViewController(withIdentifier: "RegisterViewController") as? RegisterViewController else { return }
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @IBAction func googleSinginBuuton(_ sender: UIButton) {
         
+        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+        
+        // Create Google Sign In configuration object.
+        let config = GIDConfiguration(clientID: clientID)
+        GIDSignIn.sharedInstance.configuration = config
+        
+        // Start the sign in flow!
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) { [weak self] result, error in
+            if let maybeError = error as NSError? { // if there was an error, handle it
+                if let authErrorCode = AuthErrorCode.init(rawValue: maybeError.code) {
+                    if authErrorCode == .emailAlreadyInUse {
+                        self?.showLoginErrorAlert(title: "Email is already in use.")
+                    } else {
+                        self?.showLoginErrorAlert(title: "Login Failed: An error occurred. Please try again later.")
+                    }
+                }
+            }
+            
+            guard let user = result?.user,
+                  let idToken = user.idToken?.tokenString
+            else {
+                // ...
+                print("user not logged in")
+                return
+            }
+            
+            guard let email = user.profile?.email,let firstName  = user.profile?.givenName,let lastName = user.profile?.familyName,let userName = user.profile?.name else {return}
+            
+            FirebaseDatabaseManager.shared.insertUser(with: ChatAppUser(firstName: firstName, lastName: lastName, userName: userName, emailAddress: email))
+            
+            let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+                                                           accessToken: user.accessToken.tokenString)
+            
+            // ...
+            FirebaseAuth.Auth.auth().signIn(with: credential) { AuthDataResult, error in
+                
+                guard AuthDataResult != nil, error == nil else {
+                    print("successfully logged in with Google credential")
+                    return
+                }
+                
+                print("successfully logged in with Google credential")
+                
+                // Navigate to photoAddViewController
+                
+                guard let vc = self?.storyboard?.instantiateViewController(withIdentifier: "photoAddViewController") as? photoAddViewController else {return}
+                self?.navigationController?.pushViewController(vc, animated: true)
+
+                
+            }
+            
+        }
         
     }
+    
     
 }
 
@@ -155,7 +215,7 @@ extension LoginViewController:UITextFieldDelegate
         }
         else if textField == passwordTxt
         {
-            loginButton(UIButton().self)
+            passwordTxt.resignFirstResponder()
         }
         
         return true

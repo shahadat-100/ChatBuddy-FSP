@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="V9X-5J-AMg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9rJ-27-mdz">
     <device id="retina6_3" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
@@ -8,34 +8,54 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Conversation View Controller-->
+        <!--Chats-->
         <scene sceneID="TQG-zw-cdm">
             <objects>
                 <viewController storyboardIdentifier="conversationViewController" id="V9X-5J-AMg" customClass="conversationViewController" customModule="ChatBuddyIOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oQM-1A-suH">
                         <rect key="frame" x="0.0" y="0.0" width="402" height="874"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CSL-tH-ODZ">
-                                <rect key="frame" x="163.66666666666666" y="416.66666666666669" width="75" height="41"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Button"/>
-                                <connections>
-                                    <action selector="demo:" destination="V9X-5J-AMg" eventType="touchUpInside" id="7l1-yP-un3"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="sWP-ql-2t1"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="CSL-tH-ODZ" firstAttribute="centerX" secondItem="oQM-1A-suH" secondAttribute="centerX" id="BqE-zw-ZUY"/>
-                            <constraint firstItem="CSL-tH-ODZ" firstAttribute="centerY" secondItem="oQM-1A-suH" secondAttribute="centerY" id="Pe8-hL-IyT"/>
-                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Chats" id="gP4-K0-QvE"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3eG-IH-91Y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1331" y="-662"/>
+            <point key="canvasLocation" x="507.46268656716416" y="-662.47139588100686"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="fNQ-5J-8ol">
+            <objects>
+                <viewController storyboardIdentifier="settingsViewController" id="szy-tu-sU1" customClass="settingsViewController" customModule="ChatBuddyIOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pQg-iV-Qq9">
+                        <rect key="frame" x="0.0" y="0.0" width="402" height="874"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b6m-IV-xb2">
+                                <rect key="frame" x="160.33333333333334" y="455" width="81.666666666666657" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="KuB-lt-uTk"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Log out"/>
+                                <connections>
+                                    <action selector="logOutButton:" destination="szy-tu-sU1" eventType="touchUpInside" id="6W9-04-4TT"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="osT-1o-fbb"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="b6m-IV-xb2" firstAttribute="centerY" secondItem="osT-1o-fbb" secondAttribute="centerY" id="cCy-ct-MLG"/>
+                            <constraint firstItem="b6m-IV-xb2" firstAttribute="centerX" secondItem="osT-1o-fbb" secondAttribute="centerX" id="dwM-rQ-1Em"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Settings" id="jBw-em-Fuu"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0yE-ex-0kx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="507" y="55"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="Jgf-l1-tK8">
@@ -120,26 +140,26 @@
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ldH-4r-jMF">
-                                                <rect key="frame" x="20" y="50.000000000000014" width="362" height="241.33333333333337"/>
+                                                <rect key="frame" x="20" y="10" width="362" height="291.33333333333331"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login " textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RWw-VJ-gTI">
-                                                        <rect key="frame" x="0.0" y="0.0" width="362" height="52.666666666666664"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="362" height="40.333333333333336"/>
                                                         <fontDescription key="fontDescription" name="Copperplate-Bold" family="Copperplate" pointSize="30"/>
                                                         <color key="textColor" red="0.084433281949999994" green="0.58436643919999998" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder=" Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sux-9X-sE7">
-                                                        <rect key="frame" x="0.0" y="62.666666666666629" width="362" height="53"/>
+                                                        <rect key="frame" x="0.0" y="50.333333333333314" width="362" height="40"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" returnKeyType="continue"/>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Password " minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Y3U-eo-JKi">
-                                                        <rect key="frame" x="0.0" y="125.66666666666664" width="362" height="52.666666666666671"/>
+                                                        <rect key="frame" x="0.0" y="100.33333333333337" width="362" height="40.333333333333343"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                                                     </textField>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jtP-e1-OUv">
-                                                        <rect key="frame" x="0.0" y="188.33333333333337" width="362" height="53"/>
+                                                        <rect key="frame" x="0.0" y="150.66666666666663" width="362" height="40"/>
                                                         <color key="backgroundColor" red="0.084433281949999994" green="0.58436643919999998" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain">
@@ -157,6 +177,23 @@
                                                             <action selector="loginButton:" destination="DMQ-Ux-SWO" eventType="touchUpInside" id="KVb-IP-gG9"/>
                                                         </connections>
                                                     </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⎯⎯⎯⎯⎯ Or ⎯⎯⎯⎯⎯" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sag-i0-DV2">
+                                                        <rect key="frame" x="0.0" y="200.66666666666663" width="362" height="40.333333333333343"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TiG-qM-t4i">
+                                                        <rect key="frame" x="0.0" y="251.00000000000003" width="362" height="40.333333333333343"/>
+                                                        <color key="tintColor" red="0.084433281949999994" green="0.58436643919999998" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" image="google (1)" title="   Sing in with Google">
+                                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large"/>
+                                                        </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="googleSinginBuuton:" destination="DMQ-Ux-SWO" eventType="touchUpInside" id="khK-ya-XHg"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                             </stackView>
                                         </subviews>
@@ -165,9 +202,9 @@
                                             <constraint firstItem="75W-h3-9P5" firstAttribute="width" secondItem="RnC-rt-pH6" secondAttribute="width" id="QKj-Lb-fPF"/>
                                             <constraint firstAttribute="bottom" secondItem="75W-h3-9P5" secondAttribute="bottom" id="d2G-9J-3P1"/>
                                             <constraint firstAttribute="trailing" secondItem="ldH-4r-jMF" secondAttribute="trailing" constant="20" id="dcS-tk-n2b"/>
-                                            <constraint firstItem="ldH-4r-jMF" firstAttribute="top" secondItem="RnC-rt-pH6" secondAttribute="top" constant="50" id="fZU-FM-CxX"/>
+                                            <constraint firstItem="ldH-4r-jMF" firstAttribute="top" secondItem="RnC-rt-pH6" secondAttribute="top" constant="10" id="fZU-FM-CxX"/>
                                             <constraint firstItem="75W-h3-9P5" firstAttribute="height" secondItem="RnC-rt-pH6" secondAttribute="height" multiplier="0.2" id="pCW-Cc-Rsd"/>
-                                            <constraint firstItem="75W-h3-9P5" firstAttribute="top" secondItem="ldH-4r-jMF" secondAttribute="bottom" constant="20" id="qyz-3o-GmO"/>
+                                            <constraint firstItem="75W-h3-9P5" firstAttribute="top" secondItem="ldH-4r-jMF" secondAttribute="bottom" constant="10" id="qyz-3o-GmO"/>
                                             <constraint firstItem="75W-h3-9P5" firstAttribute="leading" secondItem="RnC-rt-pH6" secondAttribute="leading" id="rbS-yg-Jih"/>
                                             <constraint firstItem="ldH-4r-jMF" firstAttribute="leading" secondItem="RnC-rt-pH6" secondAttribute="leading" constant="20" id="thj-S5-wVF"/>
                                         </constraints>
@@ -199,6 +236,7 @@
                     </view>
                     <connections>
                         <outlet property="emailTxt" destination="sux-9X-sE7" id="gnR-57-9pz"/>
+                        <outlet property="googoleSingin" destination="TiG-qM-t4i" id="55w-Zs-8iZ"/>
                         <outlet property="passwordTxt" destination="Y3U-eo-JKi" id="JGr-Vr-niu"/>
                     </connections>
                 </viewController>
@@ -526,10 +564,69 @@
             </objects>
             <point key="canvasLocation" x="-423.88059701492534" y="-1475.2860411899312"/>
         </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="WEm-if-iza">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="9rJ-27-mdz" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mEI-jr-aAT">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="pQo-8S-Lkm" kind="relationship" relationship="viewControllers" id="nl0-Uw-afL"/>
+                        <segue destination="Hk9-LB-soG" kind="relationship" relationship="viewControllers" id="svt-QD-zJS"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gg9-ZF-BR8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1513" y="-278"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="xrj-rM-gzh">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pQo-8S-Lkm" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" image="ellipsis.message.fill" catalog="system" id="Try-TK-RbR"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="1Qo-Ep-ubx">
+                        <rect key="frame" x="0.0" y="62" width="402" height="97"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="V9X-5J-AMg" kind="relationship" relationship="rootViewController" id="RIR-Aa-X5R"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ebL-dR-fVE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-411.94029850746267" y="-662.47139588100686"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="noV-yd-DUB">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Hk9-LB-soG" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" image="gearshape.fill" catalog="system" id="XYf-Hn-fvz"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="8wC-lu-GO8">
+                        <rect key="frame" x="0.0" y="62" width="402" height="97"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="szy-tu-sU1" kind="relationship" relationship="rootViewController" id="LBl-BV-WTJ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cJw-t0-uy5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-412" y="55"/>
+        </scene>
     </scenes>
     <resources>
         <image name="boy" width="512" height="512"/>
         <image name="chat" width="512" height="512"/>
+        <image name="ellipsis.message.fill" catalog="system" width="128" height="114"/>
+        <image name="gearshape.fill" catalog="system" width="128" height="123"/>
+        <image name="google (1)" width="24" height="24"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
