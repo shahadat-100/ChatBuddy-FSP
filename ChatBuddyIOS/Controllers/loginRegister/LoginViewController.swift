@@ -8,9 +8,9 @@
 import UIKit
 import FirebaseAuth
 class LoginViewController: UIViewController {
-
     
-    @IBOutlet weak var UserNameTxt: UITextField!
+    
+   
     @IBOutlet weak var emailTxt: UITextField!
     @IBOutlet weak var passwordTxt: UITextField!
     
@@ -18,66 +18,72 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        UserNameTxt.delegate = self
         emailTxt.delegate = self
         passwordTxt.delegate = self
         
-       
+        
     }
     
     @IBAction func loginButton(_ sender: UIButton) {
-       
-        UserNameTxt.resignFirstResponder()
+        
         emailTxt.resignFirstResponder()
         passwordTxt.resignFirstResponder()
         
-        
-        guard let user = UserNameTxt.text , !user.isEmpty else {
-            showAlert(title: "user")
-            return
-        }
         guard let email = emailTxt.text ,!email.isEmpty
         else{
-            showAlert(title: "email")
+            showErrorAlert(title: "email")
             return
         }
         guard let password = passwordTxt.text , !password.isEmpty else
         {
-            showAlert(title: "password")
+            showErrorAlert(title: "password")
             return
         }
         if !isValidEmail(email)
         {
-            showAlert1(title: "Invalid email format." )
+            showLoginErrorAlert(title: "Invalid email format." )
             return
         }
         if !isValidPassword(password)
         {
-            showAlert1(title:  "Password must include uppercase, lowercase, number, and symbol.")
+            showLoginErrorAlert(title:  "Password must include uppercase, lowercase, number, and symbol.")
             return
         }
         if password.count < 8
         {
-            showAlert1(title: "Password must be at least 8 characters long.")
+            showLoginErrorAlert(title: "Password must be at least 8 characters long.")
             return
         }
         
         
-        // log in by firebase
-        
-        FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password) { AuthDataResult, error in
-            guard let result = AuthDataResult, error == nil else
+        // sing in account in firebase
+        FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password) { [weak self] authDataResult, error in
+            
+            
+            // if there was an error, handle it
+            guard error == nil else
             {
-                print("Getting error while SingIn ")
+                self?.showLoginErrorAlert(title: "Login Failed: An error occurred. Please try again.")
                 return
             }
+            
+            // Ensure authDataResult is not nil
+            guard let result = authDataResult else {
+                self?.showLoginErrorAlert(title: "An unexpected error occurred. Please try again.")
+                return
+            }
+            
+            // User signed in successfully
             let user = result.user
-            print("logged in seccessfully with user \(user)")
+            print("Logged in successfully with \(user.email ?? "")")
+            
+            // Navigate to photoAddViewController
+            
+            guard let vc = self?.storyboard?.instantiateViewController(withIdentifier: "photoAddViewController") as? photoAddViewController else {return}
+            self?.navigationController?.pushViewController(vc, animated: true)
+            
         }
         
-        guard let vc = self.storyboard?.instantiateViewController(identifier: "photoAddViewController") as? photoAddViewController
-        else {return}
-        self.navigationController?.pushViewController(vc, animated: true)
         
     }
     
@@ -93,14 +99,14 @@ class LoginViewController: UIViewController {
 
 extension LoginViewController
 {
-    private func showAlert(title:String)
+    private func showErrorAlert(title:String)
     {
-        let alert = UIAlertController(title: "Woops!", message: "The \(title) field is empty", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Opps!", message: "The \(title) field is empty", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Okey", style: .cancel))
         self.present(alert, animated: true)
     }
     
-    private func showAlert1(title:String)
+    private func showLoginErrorAlert(title:String)
     {
         let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Okey", style: .cancel))
@@ -113,13 +119,13 @@ extension LoginViewController
     }
     
     private  func isValidPassword(_ password: String) -> Bool{
-      
+        
         var hasUpperCase = false
         var hasLowerCase = false
         var hasNumber = false
         var hasSpecialCharecter = false
         
-       
+        
         for character in password {
             if character.isUppercase {
                 hasUpperCase = true
@@ -135,7 +141,7 @@ extension LoginViewController
         return hasUpperCase && hasLowerCase && hasNumber && hasSpecialCharecter
     }
     
-
+    
 }
 
 
@@ -143,10 +149,7 @@ extension LoginViewController:UITextFieldDelegate
 {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
-        if textField == UserNameTxt
-        {
-            emailTxt.becomeFirstResponder()
-        }else if textField == emailTxt
+         if textField == emailTxt
         {
             passwordTxt.becomeFirstResponder()
         }
@@ -158,3 +161,16 @@ extension LoginViewController:UITextFieldDelegate
         return true
     }
 }
+
+
+//            if let maybeError = error as NSError? { // if there was an error, handle it
+//                if let authErrorCode = AuthErrorCode.init(rawValue: maybeError.code) {
+//                    if authErrorCode == .userNotFound {
+//                        self.showLoginErrorAlert(title: "No Account Found: This email is not registered. Please sign up first.")
+//                    } else if authErrorCode == .wrongPassword {
+//                        self.showLoginErrorAlert(title: "Incorrect Password: Please check your password and try again.")
+//                    } else {
+//                        self.showLoginErrorAlert(title: "Login Failed: An error occurred. Please try again later.")
+//                    }
+//                }
+//            }

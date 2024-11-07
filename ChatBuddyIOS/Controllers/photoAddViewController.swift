@@ -26,6 +26,8 @@ class photoAddViewController: UIViewController {
     }
     
     @IBAction func nextButton(_ sender: UIButton) {
+        
+        self.navigationController?.dismiss(animated: true)
     }
     
 }
@@ -70,3 +72,7 @@ extension photoAddViewController:PHPickerViewControllerDelegate
     
     
 }
+
+
+
+/**/

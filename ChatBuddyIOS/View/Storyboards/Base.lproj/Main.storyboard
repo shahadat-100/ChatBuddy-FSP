@@ -15,13 +15,27 @@
                     <view key="view" contentMode="scaleToFill" id="oQM-1A-suH">
                         <rect key="frame" x="0.0" y="0.0" width="402" height="874"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CSL-tH-ODZ">
+                                <rect key="frame" x="163.66666666666666" y="416.66666666666669" width="75" height="41"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                <connections>
+                                    <action selector="demo:" destination="V9X-5J-AMg" eventType="touchUpInside" id="7l1-yP-un3"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="sWP-ql-2t1"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="CSL-tH-ODZ" firstAttribute="centerX" secondItem="oQM-1A-suH" secondAttribute="centerX" id="BqE-zw-ZUY"/>
+                            <constraint firstItem="CSL-tH-ODZ" firstAttribute="centerY" secondItem="oQM-1A-suH" secondAttribute="centerY" id="Pe8-hL-IyT"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3eG-IH-91Y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-931" y="-639"/>
+            <point key="canvasLocation" x="-1331" y="-662"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="Jgf-l1-tK8">
@@ -106,31 +120,26 @@
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ldH-4r-jMF">
-                                                <rect key="frame" x="20" y="20" width="362" height="271.33333333333331"/>
+                                                <rect key="frame" x="20" y="50.000000000000014" width="362" height="241.33333333333337"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login " textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RWw-VJ-gTI">
-                                                        <rect key="frame" x="0.0" y="0.0" width="362" height="46.333333333333336"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="362" height="52.666666666666664"/>
                                                         <fontDescription key="fontDescription" name="Copperplate-Bold" family="Copperplate" pointSize="30"/>
                                                         <color key="textColor" red="0.084433281949999994" green="0.58436643919999998" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder=" User Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BWK-Lv-Rj3">
-                                                        <rect key="frame" x="0.0" y="56.333333333333371" width="362" height="46"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" returnKeyType="continue"/>
-                                                    </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder=" Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sux-9X-sE7">
-                                                        <rect key="frame" x="0.0" y="112.33333333333336" width="362" height="46.333333333333329"/>
+                                                        <rect key="frame" x="0.0" y="62.666666666666629" width="362" height="53"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" returnKeyType="continue"/>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Password " minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Y3U-eo-JKi">
-                                                        <rect key="frame" x="0.0" y="168.66666666666663" width="362" height="46.333333333333343"/>
+                                                        <rect key="frame" x="0.0" y="125.66666666666664" width="362" height="52.666666666666671"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                                                     </textField>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jtP-e1-OUv">
-                                                        <rect key="frame" x="0.0" y="225" width="362" height="46.333333333333314"/>
+                                                        <rect key="frame" x="0.0" y="188.33333333333337" width="362" height="53"/>
                                                         <color key="backgroundColor" red="0.084433281949999994" green="0.58436643919999998" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain">
@@ -156,7 +165,7 @@
                                             <constraint firstItem="75W-h3-9P5" firstAttribute="width" secondItem="RnC-rt-pH6" secondAttribute="width" id="QKj-Lb-fPF"/>
                                             <constraint firstAttribute="bottom" secondItem="75W-h3-9P5" secondAttribute="bottom" id="d2G-9J-3P1"/>
                                             <constraint firstAttribute="trailing" secondItem="ldH-4r-jMF" secondAttribute="trailing" constant="20" id="dcS-tk-n2b"/>
-                                            <constraint firstItem="ldH-4r-jMF" firstAttribute="top" secondItem="RnC-rt-pH6" secondAttribute="top" constant="20" id="fZU-FM-CxX"/>
+                                            <constraint firstItem="ldH-4r-jMF" firstAttribute="top" secondItem="RnC-rt-pH6" secondAttribute="top" constant="50" id="fZU-FM-CxX"/>
                                             <constraint firstItem="75W-h3-9P5" firstAttribute="height" secondItem="RnC-rt-pH6" secondAttribute="height" multiplier="0.2" id="pCW-Cc-Rsd"/>
                                             <constraint firstItem="75W-h3-9P5" firstAttribute="top" secondItem="ldH-4r-jMF" secondAttribute="bottom" constant="20" id="qyz-3o-GmO"/>
                                             <constraint firstItem="75W-h3-9P5" firstAttribute="leading" secondItem="RnC-rt-pH6" secondAttribute="leading" id="rbS-yg-Jih"/>
@@ -189,7 +198,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="UserNameTxt" destination="BWK-Lv-Rj3" id="RZL-rD-DaP"/>
                         <outlet property="emailTxt" destination="sux-9X-sE7" id="gnR-57-9pz"/>
                         <outlet property="passwordTxt" destination="Y3U-eo-JKi" id="JGr-Vr-niu"/>
                     </connections>
@@ -265,38 +273,43 @@
                                                 <rect key="frame" x="20" y="20" width="362" height="389.66666666666669"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Create An New Account" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="enP-Yu-4K8">
-                                                        <rect key="frame" x="0.0" y="0.0" width="362" height="47"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="362" height="40"/>
                                                         <fontDescription key="fontDescription" name="Copperplate-Bold" family="Copperplate" pointSize="28"/>
                                                         <color key="textColor" red="0.086274509803921567" green="0.58431372549019611" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder=" First Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2yt-8d-qZM">
-                                                        <rect key="frame" x="0.0" y="57" width="362" height="47.333333333333343"/>
+                                                        <rect key="frame" x="0.0" y="50" width="362" height="40"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" returnKeyType="continue"/>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder=" Last Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lNk-A2-3EH">
-                                                        <rect key="frame" x="0.0" y="114.33333333333337" width="362" height="47"/>
+                                                        <rect key="frame" x="0.0" y="100" width="362" height="40"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" returnKeyType="continue"/>
+                                                    </textField>
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder=" User Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BWK-Lv-Rj3">
+                                                        <rect key="frame" x="0.0" y="150" width="362" height="40"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" returnKeyType="continue"/>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder=" Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="keh-T9-Sh5">
-                                                        <rect key="frame" x="0.0" y="171.33333333333331" width="362" height="47"/>
+                                                        <rect key="frame" x="0.0" y="200.00000000000006" width="362" height="40"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" returnKeyType="continue"/>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder=" Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CbN-GN-MDv">
-                                                        <rect key="frame" x="0.0" y="228.33333333333331" width="362" height="47.333333333333314"/>
+                                                        <rect key="frame" x="0.0" y="250.00000000000006" width="362" height="40"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" returnKeyType="continue" secureTextEntry="YES"/>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder=" Confirm Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NQR-Yu-mgZ">
-                                                        <rect key="frame" x="0.0" y="285.66666666666669" width="362" height="47"/>
+                                                        <rect key="frame" x="0.0" y="300.00000000000006" width="362" height="39.666666666666686"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                                                     </textField>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ryv-BN-1nL">
-                                                        <rect key="frame" x="0.0" y="342.66666666666669" width="362" height="47"/>
+                                                        <rect key="frame" x="0.0" y="349.66666666666669" width="362" height="40"/>
                                                         <color key="backgroundColor" red="0.084433281949999994" green="0.58436643919999998" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain">
@@ -356,6 +369,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="UserNameTxt" destination="BWK-Lv-Rj3" id="uOe-cr-tkE"/>
                         <outlet property="confirmpasswordText" destination="NQR-Yu-mgZ" id="ZFQ-ig-mpv"/>
                         <outlet property="emailText" destination="keh-T9-Sh5" id="jqd-uI-U5M"/>
                         <outlet property="firstName" destination="2yt-8d-qZM" id="kmq-ux-0JQ"/>
@@ -520,7 +534,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="tintColor">
-            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
