@@ -31,7 +31,6 @@ extension FirebaseDatabaseManager
     public func insertUser(with user: ChatAppUser) {
         
         let safeEmail = safeEmailAdress(_emailAddress: user.emailAddress)
-      
         let userRef = self.database_ref.child("users").child(safeEmail)
         
         // Check if the user already exists
@@ -54,5 +53,40 @@ extension FirebaseDatabaseManager
             }
         }
     }
-     
+    
+    
+    public func saveProfileURL(imageUrl: URL, forUser userEmailAddress: String) {
+        
+        let safeEmail = safeEmailAdress(_emailAddress: userEmailAddress)
+        let userRef = self.database_ref.child("users").child(safeEmail)
+        
+        
+        userRef.updateChildValues([
+            "profileURl": imageUrl.absoluteString
+        ]) { error, _ in
+            if let error = error {
+                print("Error saving URL to Firebase: \(error.localizedDescription)")
+            } else {
+                print("Image URL saved successfully to Firebase!")
+            }
+        }
+    }
+    
+    
+    public func fetchUserName(with userEmailAddress: String, completion: @escaping (String?) -> Void ) {
+        
+        let safeEmail = safeEmailAdress(_emailAddress: userEmailAddress)
+        let userRef = self.database_ref.child("users").child(safeEmail)
+        
+        userRef.observeSingleEvent(of: .value) { snapshot in
+            if let userData = snapshot.value as? [String: Any],
+               let userName = userData["user_Name"] as? String {
+                completion(userName)
+            } else {
+                completion(nil) // User not found or no name field available
+            }
+        }
+    }
+
+    
 }

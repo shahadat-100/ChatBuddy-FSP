@@ -9,21 +9,31 @@ import UIKit
 
 class NewConversationsViewController: UIViewController {
 
+    let searchController = UISearchController(searchResultsController: nil)
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        searchController.becomeFirstResponder()
+        searchController.searchResultsUpdater = self
+        searchController.delegate = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search New Friends"
+        searchController.searchBar.enablesReturnKeyAutomatically = false
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+      
+    }
+
+}
+
+extension NewConversationsViewController:UISearchControllerDelegate,UISearchResultsUpdating{
+    func updateSearchResults(for searchController: UISearchController) {
+        
+        guard let Friend = searchController.searchBar.text , !Friend.isEmpty else { return}
+        print(Friend)
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

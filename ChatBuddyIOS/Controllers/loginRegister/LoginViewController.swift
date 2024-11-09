@@ -9,6 +9,7 @@ import UIKit
 import FirebaseAuth
 import GoogleSignIn
 import FirebaseCore
+import JGProgressHUD
 class LoginViewController: UIViewController {
     
     
@@ -17,6 +18,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var emailTxt: UITextField!
     @IBOutlet weak var passwordTxt: UITextField!
     
+    private let spiner = JGProgressHUD(style: .dark)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,9 +61,12 @@ class LoginViewController: UIViewController {
             return
         }
         
+        spiner.detailTextLabel.text = "Logging in..."
+        spiner.show(in: view, animated: true)
         
         // sing in account in firebase
         FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password) { [weak self] authDataResult, error in
+            
             
             
             // if there was an error, handle it
@@ -81,9 +86,14 @@ class LoginViewController: UIViewController {
             let user = result.user
             print("Logged in successfully with \(user.email ?? "")")
             
-            // Navigate to photoAddViewController
             
+            DispatchQueue.main.async {
+                self?.spiner.dismiss(animated: true)
+            }
+            
+            // Navigate to photoAddViewController
             guard let vc = self?.storyboard?.instantiateViewController(withIdentifier: "photoAddViewController") as? photoAddViewController else {return}
+            vc.emailAddess = email
             self?.navigationController?.pushViewController(vc, animated: true)
             
         }
@@ -97,7 +107,13 @@ class LoginViewController: UIViewController {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
+    
+    
     @IBAction func googleSinginBuuton(_ sender: UIButton) {
+        
+        spiner.detailTextLabel.text = "Logging in..."
+        spiner.show(in: view, animated: true)
+
         
         guard let clientID = FirebaseApp.app()?.options.clientID else { return }
         
@@ -125,6 +141,7 @@ class LoginViewController: UIViewController {
                 return
             }
             
+           
             guard let email = user.profile?.email,let firstName  = user.profile?.givenName,let lastName = user.profile?.familyName,let userName = user.profile?.name else {return}
             
             FirebaseDatabaseManager.shared.insertUser(with: ChatAppUser(firstName: firstName, lastName: lastName, userName: userName, emailAddress: email))
@@ -133,6 +150,8 @@ class LoginViewController: UIViewController {
                                                            accessToken: user.accessToken.tokenString)
             
             // ...
+            
+            
             FirebaseAuth.Auth.auth().signIn(with: credential) { AuthDataResult, error in
                 
                 guard AuthDataResult != nil, error == nil else {
@@ -142,9 +161,15 @@ class LoginViewController: UIViewController {
                 
                 print("successfully logged in with Google credential")
                 
-                // Navigate to photoAddViewController
                 
+                
+                DispatchQueue.main.async {
+                    self?.spiner.dismiss(animated: true)
+                }
+
+                // Navigate to photoAddViewController
                 guard let vc = self?.storyboard?.instantiateViewController(withIdentifier: "photoAddViewController") as? photoAddViewController else {return}
+                vc.emailAddess = email
                 self?.navigationController?.pushViewController(vc, animated: true)
 
                 

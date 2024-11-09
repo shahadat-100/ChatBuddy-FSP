@@ -12,6 +12,9 @@ class photoAddViewController: UIViewController {
 
     @IBOutlet weak var ProfileImg: UIImageView!
     @IBOutlet weak var viewforImg: UIView!
+    
+    var emailAddess:String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -59,14 +62,27 @@ extension photoAddViewController:PHPickerViewControllerDelegate
         picker.dismiss(animated: true)
         
         for result in results {
-            
+           
+            //for image
             result.itemProvider.loadObject(ofClass: UIImage.self) { item,error in
                 
                 guard let image = item as? UIImage else {return}
                 DispatchQueue.main.async {
-                    self.ProfileImg.image = image
+                   self.ProfileImg.image = image
                 }
             }
+            
+            //for url
+            result.itemProvider.loadFileRepresentation(forTypeIdentifier: UTType.image.identifier, completionHandler: {[weak self] url,error in
+                
+                guard let imageUrl = url else
+                {
+                    print("Error loading file URL: \(String(describing: error))")
+                    return
+                }
+                
+                FirebaseDatabaseManager.shared.saveProfileURL(imageUrl: imageUrl, forUser: (self?.emailAddess)!)
+            })
         }
     }
     

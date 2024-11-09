@@ -33,6 +33,8 @@
 		EF3EE8732CDA884E003D94E8 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = EF3EE8722CDA884E003D94E8 /* FirebaseStorage */; };
 		EF3EE8752CDA884E003D94E8 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = EF3EE8742CDA884E003D94E8 /* FirebaseStorageCombine-Community */; };
 		EF3EE8772CDA884E003D94E8 /* FirebaseVertexAI in Frameworks */ = {isa = PBXBuildFile; productRef = EF3EE8762CDA884E003D94E8 /* FirebaseVertexAI */; };
+		EF9738402CDE55E5004D501D /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = EF97383F2CDE55E5004D501D /* JGProgressHUD */; };
+		EFC8AC4D2CDE3D260088E20D /* MessageKit in Frameworks */ = {isa = PBXBuildFile; productRef = EFC8AC4C2CDE3D260088E20D /* MessageKit */; };
 		EFF2CEA12CD90A4700E347B2 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = EFF2CEA02CD90A4700E347B2 /* IQKeyboardManagerSwift */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +71,7 @@
 				EF3EE8492CDA884E003D94E8 /* FirebaseAnalytics in Frameworks */,
 				EF3EE85F2CDA884E003D94E8 /* FirebaseFirestore in Frameworks */,
 				EF3EE84B2CDA884E003D94E8 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
+				EFC8AC4D2CDE3D260088E20D /* MessageKit in Frameworks */,
 				EF290FD42CDD19D3008001C5 /* GoogleSignIn in Frameworks */,
 				EF3EE8692CDA884E003D94E8 /* FirebaseInstallations in Frameworks */,
 				EFF2CEA12CD90A4700E347B2 /* IQKeyboardManagerSwift in Frameworks */,
@@ -87,6 +90,7 @@
 				EF3EE86D2CDA884E003D94E8 /* FirebaseMessaging in Frameworks */,
 				EF3EE86B2CDA884E003D94E8 /* FirebaseMLModelDownloader in Frameworks */,
 				EF3EE86F2CDA884E003D94E8 /* FirebasePerformance in Frameworks */,
+				EF9738402CDE55E5004D501D /* JGProgressHUD in Frameworks */,
 				EF3EE85B2CDA884E003D94E8 /* FirebaseDatabase in Frameworks */,
 				EF3EE8572CDA884E003D94E8 /* FirebaseCore in Frameworks */,
 				EF3EE8552CDA884E003D94E8 /* FirebaseAuthCombine-Community in Frameworks */,
@@ -162,6 +166,8 @@
 				EF3EE8762CDA884E003D94E8 /* FirebaseVertexAI */,
 				EF290FD32CDD19D3008001C5 /* GoogleSignIn */,
 				EF290FD52CDD19D3008001C5 /* GoogleSignInSwift */,
+				EFC8AC4C2CDE3D260088E20D /* MessageKit */,
+				EF97383F2CDE55E5004D501D /* JGProgressHUD */,
 			);
 			productName = ChatBuddyIOS;
 			productReference = EFF2CE872CD909CE00E347B2 /* ChatBuddyIOS.app */;
@@ -195,6 +201,8 @@
 				EFF2CE9F2CD90A4700E347B2 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				EF3EE8472CDA884E003D94E8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				EF290FD22CDD19D3008001C5 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				EFC8AC4B2CDE3D260088E20D /* XCRemoteSwiftPackageReference "MessageKit" */,
+				EF97383E2CDE55E5004D501D /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = EFF2CE882CD909CE00E347B2 /* Products */;
@@ -440,6 +448,22 @@
 				minimumVersion = 11.4.0;
 			};
 		};
+		EF97383E2CDE55E5004D501D /* XCRemoteSwiftPackageReference "JGProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JonasGessner/JGProgressHUD.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.0;
+			};
+		};
+		EFC8AC4B2CDE3D260088E20D /* XCRemoteSwiftPackageReference "MessageKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MessageKit/MessageKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.3.0;
+			};
+		};
 		EFF2CE9F2CD90A4700E347B2 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
@@ -580,6 +604,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EF3EE8472CDA884E003D94E8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseVertexAI;
+		};
+		EF97383F2CDE55E5004D501D /* JGProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EF97383E2CDE55E5004D501D /* XCRemoteSwiftPackageReference "JGProgressHUD" */;
+			productName = JGProgressHUD;
+		};
+		EFC8AC4C2CDE3D260088E20D /* MessageKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EFC8AC4B2CDE3D260088E20D /* XCRemoteSwiftPackageReference "MessageKit" */;
+			productName = MessageKit;
 		};
 		EFF2CEA02CD90A4700E347B2 /* IQKeyboardManagerSwift */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseAuth
+import JGProgressHUD
 
 class RegisterViewController: UIViewController {
     
@@ -16,6 +17,8 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var emailText: UITextField!
     @IBOutlet weak var passwordText: UITextField!
     @IBOutlet weak var confirmpasswordText: UITextField!
+    
+    private let spinner = JGProgressHUD(style: .dark)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,9 +108,13 @@ class RegisterViewController: UIViewController {
             showLoginErrorAlert(title: "Password must be at least 8 characters long.")
             return
         }
+    
+        spinner.detailTextLabel.text = "Registering..."
+        spinner.show(in: view, animated: true)
         // register by firebase
         
         FirebaseAuth.Auth.auth().createUser(withEmail: email, password: confirmPass) { [weak self] authResult , error in
+            
             
             if let maybeError = error as NSError? { // if there was an error, handle it
                 if let authErrorCode = AuthErrorCode.init(rawValue: maybeError.code) {
@@ -132,6 +139,11 @@ class RegisterViewController: UIViewController {
             do {
                 try FirebaseAuth.Auth.auth().signOut()
                 print("User signed out after registration")
+                
+                DispatchQueue.main.async {
+                    self?.spinner.dismiss(animated: true)
+                }
+                // go back login view
                 self?.navigationController?.popViewController(animated: true)
             } catch let signOutError {
                 print("Error signing out: ", signOutError)
