@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseAuth
+import SDWebImage
 
 class sideManuViewController: UIViewController {
 
@@ -25,6 +26,7 @@ class sideManuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setUserProfile()
         uitbaleview.dataSource = self
         uitbaleview.delegate = self
         uitbaleview.register(UINib(nibName: "sidebarTableviewCell", bundle: nil), forCellReuseIdentifier: "sidebarTableviewCell")
@@ -41,6 +43,13 @@ class sideManuViewController: UIViewController {
      
         setUserProfile()
         
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        profileImg.clipsToBounds = true
+        profileImg.layer.cornerRadius = profileImg.frame.width / 2
     }
     
     private func setUserProfile()
@@ -61,6 +70,20 @@ class sideManuViewController: UIViewController {
             
             self?.name.text = userName
             self?.email.text = self?.currentUserEmail
+        }
+        
+        FirebaseDatabaseManager.shared.fetchUserProfileURL(with: currentUserEmail) { imageURl in
+            
+            if let imageURl = imageURl
+            {
+        
+                if let imageUrl = URL(string: imageURl)
+                {
+                    // Load image asynchronously using SDWebImage
+                    self.profileImg.sd_setImage(with: imageUrl)
+                    
+                }
+            }
         }
     }
 

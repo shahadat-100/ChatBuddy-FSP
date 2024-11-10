@@ -384,7 +384,7 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" returnKeyType="continue"/>
                                                     </textField>
-                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Password " minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Y3U-eo-JKi">
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder=" Password " minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Y3U-eo-JKi">
                                                         <rect key="frame" x="0.0" y="100.33333333333337" width="362" height="40.333333333333343"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
@@ -718,18 +718,24 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="132.66666666666666" height="62.333333333333336"/>
                                                                 <color key="tintColor" red="0.086274509799999996" green="0.58431372550000005" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <state key="normal" title="Button"/>
-                                                                <buttonConfiguration key="configuration" style="plain" title="Next">
-                                                                    <fontDescription key="titleFontDescription" name="Copperplate" family="Copperplate" pointSize="24"/>
-                                                                </buttonConfiguration>
+                                                                <buttonConfiguration key="configuration" style="plain"/>
                                                                 <connections>
                                                                     <action selector="nextButton:" destination="9vx-Ia-6Th" eventType="touchUpInside" id="rdO-YA-N8x"/>
                                                                 </connections>
                                                             </button>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q5A-Uf-WTC">
+                                                                <rect key="frame" x="36.333333333333371" y="18.666666666666742" width="60" height="25.333333333333329"/>
+                                                                <fontDescription key="fontDescription" name="Copperplate" family="Copperplate" pointSize="25"/>
+                                                                <color key="textColor" red="0.086274509799999996" green="0.58431372550000005" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="bottom" secondItem="zYD-EW-dgL" secondAttribute="bottom" id="7gT-me-3dS"/>
                                                             <constraint firstAttribute="trailing" secondItem="zYD-EW-dgL" secondAttribute="trailing" id="Z71-w8-JI2"/>
+                                                            <constraint firstItem="q5A-Uf-WTC" firstAttribute="centerY" secondItem="yw5-xq-VOm" secondAttribute="centerY" id="f4G-n9-dYp"/>
+                                                            <constraint firstItem="q5A-Uf-WTC" firstAttribute="centerX" secondItem="yw5-xq-VOm" secondAttribute="centerX" id="h7x-e0-mL4"/>
                                                             <constraint firstItem="zYD-EW-dgL" firstAttribute="top" secondItem="yw5-xq-VOm" secondAttribute="top" id="izM-If-5a4"/>
                                                             <constraint firstItem="zYD-EW-dgL" firstAttribute="leading" secondItem="yw5-xq-VOm" secondAttribute="leading" id="uAX-qT-lkb"/>
                                                         </constraints>
@@ -787,7 +793,10 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="ProfileImg" destination="QLM-xw-3hC" id="jGW-4W-E6i"/>
+                        <outlet property="ProfileImg" destination="QLM-xw-3hC" id="gdE-tD-Spf"/>
+                        <outlet property="butnlbl" destination="q5A-Uf-WTC" id="FpJ-HH-r3y"/>
+                        <outlet property="buttonName" destination="zYD-EW-dgL" id="QR0-dK-FKQ"/>
+                        <outlet property="imglbl" destination="YQV-I8-Z1k" id="GGH-eh-FU1"/>
                         <outlet property="viewforImg" destination="e8c-9S-RxT" id="Sv1-0g-gbS"/>
                     </connections>
                 </viewController>

@@ -55,14 +55,14 @@ extension FirebaseDatabaseManager
     }
     
     
-    public func saveProfileURL(imageUrl: URL, forUser userEmailAddress: String) {
+    public func saveProfileURL(imageUrl: String, forUser userEmailAddress: String) {
         
         let safeEmail = safeEmailAdress(_emailAddress: userEmailAddress)
         let userRef = self.database_ref.child("users").child(safeEmail)
         
         
         userRef.updateChildValues([
-            "profileURl": imageUrl.absoluteString
+            "profileURl": imageUrl
         ]) { error, _ in
             if let error = error {
                 print("Error saving URL to Firebase: \(error.localizedDescription)")
@@ -79,14 +79,49 @@ extension FirebaseDatabaseManager
         let userRef = self.database_ref.child("users").child(safeEmail)
         
         userRef.observeSingleEvent(of: .value) { snapshot in
-            if let userData = snapshot.value as? [String: Any],
-               let userName = userData["user_Name"] as? String {
-                completion(userName)
-            } else {
-                completion(nil) // User not found or no name field available
+            // Check if the snapshot contains valid data
+            guard let userData = snapshot.value as? [String: Any] else {
+                print("User data not found")
+                completion(nil)
+                return
             }
+            
+            // Extract the user name
+            guard let userName = userData["user_Name"] as? String else {
+                print("userName not found")
+                completion(nil)
+                return
+            }
+            
+            // Return the userName
+            completion(userName)
         }
     }
+    
+    public func fetchUserProfileURL(with userEmailAddress: String, completion: @escaping (String?) -> Void) {
+        let safeEmail = safeEmailAdress(_emailAddress: userEmailAddress)
+        let userRef = self.database_ref.child("users").child(safeEmail)
+        
+        userRef.observeSingleEvent(of: .value) { snapshot in
+            // Check if the snapshot contains valid data
+            guard let userData = snapshot.value as? [String: Any] else {
+                print("User data not found")
+                completion(nil)
+                return
+            }
+            
+            // Extract the profile image URL
+            guard let profileImageURL = userData["profileURl"] as? String else {
+                print("Profile URL not found")
+                completion(nil)
+                return
+            }
+            
+            // Return the profile image URL
+            completion(profileImageURL)
+        }
+    }
+
 
     
 }

@@ -126,9 +126,18 @@ class LoginViewController: UIViewController {
             if let maybeError = error as NSError? { // if there was an error, handle it
                 if let authErrorCode = AuthErrorCode.init(rawValue: maybeError.code) {
                     if authErrorCode == .emailAlreadyInUse {
+                        DispatchQueue.main.async {
+                            self?.spiner.dismiss(animated: true)
+                        }
                         self?.showLoginErrorAlert(title: "Email is already in use.")
+                        
                     } else {
+                        
+                        DispatchQueue.main.async {
+                            self?.spiner.dismiss(animated: true)
+                        }
                         self?.showLoginErrorAlert(title: "Login Failed: An error occurred. Please try again later.")
+                        
                     }
                 }
             }
@@ -138,6 +147,9 @@ class LoginViewController: UIViewController {
             else {
                 // ...
                 print("user not logged in")
+                DispatchQueue.main.async {
+                    self?.spiner.dismiss(animated: true)
+                }
                 return
             }
             

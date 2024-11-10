@@ -33,6 +33,9 @@
 		EF3EE8732CDA884E003D94E8 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = EF3EE8722CDA884E003D94E8 /* FirebaseStorage */; };
 		EF3EE8752CDA884E003D94E8 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = EF3EE8742CDA884E003D94E8 /* FirebaseStorageCombine-Community */; };
 		EF3EE8772CDA884E003D94E8 /* FirebaseVertexAI in Frameworks */ = {isa = PBXBuildFile; productRef = EF3EE8762CDA884E003D94E8 /* FirebaseVertexAI */; };
+		EF41B5762CE0C53D0077BF8D /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = EF41B5752CE0C53D0077BF8D /* SDWebImage */; };
+		EF41B5782CE0C53D0077BF8D /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = EF41B5772CE0C53D0077BF8D /* SDWebImageMapKit */; };
+		EF41B57B2CE0C5D40077BF8D /* Cloudinary in Frameworks */ = {isa = PBXBuildFile; productRef = EF41B57A2CE0C5D40077BF8D /* Cloudinary */; };
 		EF9738402CDE55E5004D501D /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = EF97383F2CDE55E5004D501D /* JGProgressHUD */; };
 		EFC8AC4D2CDE3D260088E20D /* MessageKit in Frameworks */ = {isa = PBXBuildFile; productRef = EFC8AC4C2CDE3D260088E20D /* MessageKit */; };
 		EFF2CEA12CD90A4700E347B2 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = EFF2CEA02CD90A4700E347B2 /* IQKeyboardManagerSwift */; };
@@ -72,10 +75,12 @@
 				EF3EE85F2CDA884E003D94E8 /* FirebaseFirestore in Frameworks */,
 				EF3EE84B2CDA884E003D94E8 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
 				EFC8AC4D2CDE3D260088E20D /* MessageKit in Frameworks */,
+				EF41B57B2CE0C5D40077BF8D /* Cloudinary in Frameworks */,
 				EF290FD42CDD19D3008001C5 /* GoogleSignIn in Frameworks */,
 				EF3EE8692CDA884E003D94E8 /* FirebaseInstallations in Frameworks */,
 				EFF2CEA12CD90A4700E347B2 /* IQKeyboardManagerSwift in Frameworks */,
 				EF3EE84F2CDA884E003D94E8 /* FirebaseAppCheck in Frameworks */,
+				EF41B5782CE0C53D0077BF8D /* SDWebImageMapKit in Frameworks */,
 				EF3EE8672CDA884E003D94E8 /* FirebaseInAppMessaging-Beta in Frameworks */,
 				EF3EE84D2CDA884E003D94E8 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				EF290FD62CDD19D3008001C5 /* GoogleSignInSwift in Frameworks */,
@@ -92,6 +97,7 @@
 				EF3EE86F2CDA884E003D94E8 /* FirebasePerformance in Frameworks */,
 				EF9738402CDE55E5004D501D /* JGProgressHUD in Frameworks */,
 				EF3EE85B2CDA884E003D94E8 /* FirebaseDatabase in Frameworks */,
+				EF41B5762CE0C53D0077BF8D /* SDWebImage in Frameworks */,
 				EF3EE8572CDA884E003D94E8 /* FirebaseCore in Frameworks */,
 				EF3EE8552CDA884E003D94E8 /* FirebaseAuthCombine-Community in Frameworks */,
 				EF3EE8632CDA884E003D94E8 /* FirebaseFunctions in Frameworks */,
@@ -168,6 +174,9 @@
 				EF290FD52CDD19D3008001C5 /* GoogleSignInSwift */,
 				EFC8AC4C2CDE3D260088E20D /* MessageKit */,
 				EF97383F2CDE55E5004D501D /* JGProgressHUD */,
+				EF41B5752CE0C53D0077BF8D /* SDWebImage */,
+				EF41B5772CE0C53D0077BF8D /* SDWebImageMapKit */,
+				EF41B57A2CE0C5D40077BF8D /* Cloudinary */,
 			);
 			productName = ChatBuddyIOS;
 			productReference = EFF2CE872CD909CE00E347B2 /* ChatBuddyIOS.app */;
@@ -203,6 +212,8 @@
 				EF290FD22CDD19D3008001C5 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				EFC8AC4B2CDE3D260088E20D /* XCRemoteSwiftPackageReference "MessageKit" */,
 				EF97383E2CDE55E5004D501D /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
+				EF41B5742CE0C53D0077BF8D /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				EF41B5792CE0C5D40077BF8D /* XCRemoteSwiftPackageReference "cloudinary_ios" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = EFF2CE882CD909CE00E347B2 /* Products */;
@@ -448,6 +459,22 @@
 				minimumVersion = 11.4.0;
 			};
 		};
+		EF41B5742CE0C53D0077BF8D /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.20.0;
+			};
+		};
+		EF41B5792CE0C5D40077BF8D /* XCRemoteSwiftPackageReference "cloudinary_ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/cloudinary/cloudinary_ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.0;
+			};
+		};
 		EF97383E2CDE55E5004D501D /* XCRemoteSwiftPackageReference "JGProgressHUD" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/JonasGessner/JGProgressHUD.git";
@@ -604,6 +631,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EF3EE8472CDA884E003D94E8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseVertexAI;
+		};
+		EF41B5752CE0C53D0077BF8D /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EF41B5742CE0C53D0077BF8D /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+		EF41B5772CE0C53D0077BF8D /* SDWebImageMapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EF41B5742CE0C53D0077BF8D /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImageMapKit;
+		};
+		EF41B57A2CE0C5D40077BF8D /* Cloudinary */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EF41B5792CE0C5D40077BF8D /* XCRemoteSwiftPackageReference "cloudinary_ios" */;
+			productName = Cloudinary;
 		};
 		EF97383F2CDE55E5004D501D /* JGProgressHUD */ = {
 			isa = XCSwiftPackageProductDependency;
