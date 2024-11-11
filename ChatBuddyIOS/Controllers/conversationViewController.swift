@@ -23,7 +23,8 @@ class conversationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        
         sidebarView.isHidden = true
         uitableview.isHidden = true
         
@@ -162,6 +163,8 @@ extension conversationViewController : UITableViewDataSource,UITableViewDelegate
 //        vc.hidesBottomBarWhenPushed = true
 //        navigationController?.pushViewController(vc, animated: true)
 //    }
+    
+    
     
     
 }

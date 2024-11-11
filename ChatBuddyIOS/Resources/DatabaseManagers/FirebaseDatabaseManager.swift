@@ -6,7 +6,7 @@
 //
 import Foundation
 import FirebaseDatabase
-
+import FirebaseAuth
 
 final class FirebaseDatabaseManager
 {
@@ -119,6 +119,48 @@ extension FirebaseDatabaseManager
             
             // Return the profile image URL
             completion(profileImageURL)
+        }
+    }
+
+
+    public func GetAllUsers(completion: @escaping ([UserData]?) -> Void) {
+     
+        guard let email = FirebaseAuth.Auth.auth().currentUser?.email else {
+            print("current user not found")
+            completion(nil)
+            return
+        }
+        
+        let currentUserEmail = safeEmailAdress(_emailAddress: email)
+        
+        print(currentUserEmail)
+        
+        let userRef = self.database_ref.child("users")
+        
+        userRef.observeSingleEvent(of: .value) { snapshot in
+            guard let usersData = snapshot.value as? [String: [String: Any]] else {
+                print("Users data not found")
+                completion(nil)
+                return
+            }
+            
+            // Array to hold filtered user data
+            var users: [UserData] = []
+            
+            for (user, userData) in usersData {
+                if user == currentUserEmail {
+                    continue
+                } else {
+                    if let userName = userData["user_Name"] as? String,
+                       let profileUrl = userData["profileURl"] as? String {
+                        // Add only userName and profileUrl to the users array
+                        users.append(UserData(userEmail: user, userName: userName, userProfileUrl: profileUrl))
+                    }
+                }
+            }
+            
+           // print(users)
+            completion(users)
         }
     }
 

@@ -121,10 +121,19 @@ extension photoAddViewController:PHPickerViewControllerDelegate
             //for image
             result.itemProvider.loadObject(ofClass: UIImage.self) { item,error in
                 guard let image = item as? UIImage else { return }
+               
+                DispatchQueue.main.async {
+                    if self.flag
+                    {
+                        self.butnlbl.text = "Update"
+                    }
+                    self.ProfileImg.image = image
+
+                }
                 
                 guard let emailAddess = self.emailAddess else {return}
                 
-                self.cloudinaryManager.uploadImage(image) { uploadedImage, imageUrl, error in
+                self.cloudinaryManager.uploadImage(image) {imageUrl, error in
                     if let error = error {
                         print("Image upload failed in Cloudinary: \(error.localizedDescription)")
                         return
@@ -136,20 +145,7 @@ extension photoAddViewController:PHPickerViewControllerDelegate
                     }
                     
                     FirebaseDatabaseManager().saveProfileURL(imageUrl: imageUrl, forUser: emailAddess)
-                    
-                    guard let uploadedImage = uploadedImage else {
-                        print("Uploaded image not found")
-                        return
-                    }
-                    
-                    DispatchQueue.main.async {
-                        if self.flag
-                        {
-                            self.butnlbl.text = "Update"
-                        }
-                        self.ProfileImg.image = uploadedImage
 
-                    }
                 }
                 
             }

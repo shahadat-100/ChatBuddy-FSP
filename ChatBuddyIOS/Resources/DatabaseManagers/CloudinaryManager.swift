@@ -10,6 +10,7 @@ import Cloudinary
 import UIKit
 
 class CloudinaryManager {
+    
     private let cloudinary: CLDCloudinary
 
     init() {
@@ -17,27 +18,28 @@ class CloudinaryManager {
         cloudinary = CLDCloudinary(configuration: config)
     }
 
-    func uploadImage(_ image: UIImage, completion: @escaping (UIImage?, String?, Error?) -> Void) {
+    func uploadImage(_ image: UIImage, completion: @escaping (String?, Error?) -> Void) {
        
         guard let imageData = image.jpegData(compressionQuality: 0.6) else {
-            completion(nil, nil, NSError())
+            completion(nil, NSError())
             return
         }
 
         let params = CLDUploadRequestParams()
         params.setFolder("userProfilePictures")
 
+        
         cloudinary.createUploader().upload(data: imageData, uploadPreset: "chatBuddy-preset", params: params)
             .response { result, error in
                 if let error = error {
-                    completion(nil, nil, error)
+                    completion(nil, error)
                 } else {
                     // If the upload succeeds, return the image and the URL
                     if let imgUrl = result?.secureUrl {
-                        completion(image, imgUrl, nil)
+                        completion(imgUrl, nil)
                         print("iamge successfully saved in cloudinary ")
                     } else {
-                        completion(nil, nil, NSError())
+                        completion(nil, NSError())
                     }
                 }
             }

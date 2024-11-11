@@ -18,14 +18,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bad-review" translatesAutoresizingMaskIntoConstraints="NO" id="tci-MU-nfh">
-                                <rect key="frame" x="112.99999999999999" y="387" width="174.66666666666663" height="174.66666666666663"/>
+                                <rect key="frame" x="135.33333333333331" y="409.33333333333331" width="131.33333333333331" height="131.33333333333331"/>
                                 <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="tci-MU-nfh" secondAttribute="height" multiplier="1:1" id="WqE-RI-gnH"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Empty Conversation" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s7V-Xs-2og">
-                                <rect key="frame" x="20" y="566.66666666666663" width="362" height="70"/>
+                                <rect key="frame" x="20" y="545.66666666666663" width="362" height="69.666666666666629"/>
                                 <fontDescription key="fontDescription" name="Copperplate" family="Copperplate" pointSize="30"/>
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -56,15 +56,15 @@
                         <viewLayoutGuide key="safeArea" id="sWP-ql-2t1"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="tci-MU-nfh" firstAttribute="centerY" secondItem="sWP-ql-2t1" secondAttribute="centerY" id="0eq-3t-ZNU"/>
                             <constraint firstItem="RNR-if-DIn" firstAttribute="top" secondItem="sWP-ql-2t1" secondAttribute="top" id="2L2-42-CmD"/>
+                            <constraint firstItem="tci-MU-nfh" firstAttribute="centerX" secondItem="sWP-ql-2t1" secondAttribute="centerX" id="413-EC-vPv"/>
                             <constraint firstItem="RNR-if-DIn" firstAttribute="leading" secondItem="sWP-ql-2t1" secondAttribute="leading" id="5N5-u7-F3P"/>
                             <constraint firstAttribute="bottom" secondItem="J42-Lz-Qpc" secondAttribute="bottom" id="8Mm-h0-RNc"/>
-                            <constraint firstItem="tci-MU-nfh" firstAttribute="top" secondItem="sWP-ql-2t1" secondAttribute="top" constant="228" id="8bm-Dl-DdE"/>
                             <constraint firstItem="J42-Lz-Qpc" firstAttribute="width" secondItem="oQM-1A-suH" secondAttribute="width" multiplier="0.8" id="G5f-27-XOy"/>
-                            <constraint firstItem="sWP-ql-2t1" firstAttribute="trailing" secondItem="tci-MU-nfh" secondAttribute="trailing" constant="114.33" id="GoF-cw-xFL"/>
                             <constraint firstItem="s7V-Xs-2og" firstAttribute="top" secondItem="tci-MU-nfh" secondAttribute="bottom" constant="5" id="HyT-OY-JHY"/>
                             <constraint firstItem="sWP-ql-2t1" firstAttribute="trailing" secondItem="RNR-if-DIn" secondAttribute="trailing" id="Hz5-W8-Ud3"/>
-                            <constraint firstItem="tci-MU-nfh" firstAttribute="height" secondItem="oQM-1A-suH" secondAttribute="height" multiplier="0.2" id="JKR-fi-Xef"/>
+                            <constraint firstItem="tci-MU-nfh" firstAttribute="height" secondItem="oQM-1A-suH" secondAttribute="height" multiplier="0.15" id="JKR-fi-Xef"/>
                             <constraint firstItem="s7V-Xs-2og" firstAttribute="height" secondItem="oQM-1A-suH" secondAttribute="height" multiplier="0.08" id="JQG-iV-T2g"/>
                             <constraint firstItem="s7V-Xs-2og" firstAttribute="leading" secondItem="sWP-ql-2t1" secondAttribute="leading" constant="20" id="LWm-c2-CtI"/>
                             <constraint firstItem="sWP-ql-2t1" firstAttribute="trailing" secondItem="s7V-Xs-2og" secondAttribute="trailing" constant="20" id="OQs-dy-yHq"/>
@@ -81,7 +81,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="emptyImgVIew" destination="tci-MU-nfh" id="pQl-E6-phk"/>
+                        <outlet property="emptyImgVIew" destination="tci-MU-nfh" id="Inm-f7-LrJ"/>
                         <outlet property="emptyLvl" destination="s7V-Xs-2og" id="h9H-t7-Hcl"/>
                         <outlet property="sidebarConteinarview" destination="Oi4-L7-HcR" id="cC6-kL-CDo"/>
                         <outlet property="sidebarView" destination="J42-Lz-Qpc" id="WZt-uh-751"/>
@@ -111,7 +111,28 @@
         <scene sceneID="2FP-oM-5ie">
             <objects>
                 <viewController storyboardIdentifier="NewConversationsViewController" id="yC8-0d-Mic" customClass="NewConversationsViewController" customModule="ChatBuddyIOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2TV-F3-KAR">
+                        <rect key="frame" x="0.0" y="0.0" width="402" height="874"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="YYu-se-oG9">
+                                <rect key="frame" x="0.0" y="159" width="402" height="632"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="hmm-Va-hmR"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="YYu-se-oG9" firstAttribute="top" secondItem="hmm-Va-hmR" secondAttribute="top" id="Z67-E9-PjR"/>
+                            <constraint firstItem="hmm-Va-hmR" firstAttribute="bottom" secondItem="YYu-se-oG9" secondAttribute="bottom" id="aSG-Lb-2Ig"/>
+                            <constraint firstItem="hmm-Va-hmR" firstAttribute="trailing" secondItem="YYu-se-oG9" secondAttribute="trailing" id="aw5-j5-qlx"/>
+                            <constraint firstItem="YYu-se-oG9" firstAttribute="leading" secondItem="hmm-Va-hmR" secondAttribute="leading" id="sGX-Jw-dBI"/>
+                        </constraints>
+                    </view>
                     <navigationItem key="navigationItem" title="Friends" style="editor" id="LfG-On-8IH"/>
+                    <connections>
+                        <outlet property="uitableview" destination="YYu-se-oG9" id="wPk-lP-Rgi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C1m-XN-v8O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

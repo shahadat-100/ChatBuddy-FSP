@@ -20,8 +20,5 @@ class ChatAppUser{
         self.userName = userName
         self.emailAddress = emailAddress
     }
-    
-    
-    
-   
+
 }

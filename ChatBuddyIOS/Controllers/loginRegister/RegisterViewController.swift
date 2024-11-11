@@ -113,6 +113,9 @@ class RegisterViewController: UIViewController {
         spinner.show(in: view, animated: true)
         // register by firebase
         
+        
+        
+        
         FirebaseAuth.Auth.auth().createUser(withEmail: email, password: confirmPass) { [weak self] authResult , error in
             
             
