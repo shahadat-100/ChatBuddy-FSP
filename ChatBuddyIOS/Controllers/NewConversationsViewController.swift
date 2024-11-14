@@ -32,6 +32,7 @@ class NewConversationsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         filterUsers.removeAll()
         uitableview.reloadData()
+        searchController.searchBar.placeholder = "Search Friends Here!"
     }
 
 }
@@ -88,10 +89,7 @@ extension NewConversationsViewController:UISearchControllerDelegate,UISearchResu
             }
         }
         uitableview.reloadData()
-        
     }
-    
-    
     
 }
 
@@ -114,10 +112,10 @@ extension NewConversationsViewController:UITableViewDataSource,UITableViewDelega
         if let imageUrl = URL(string: filterUsers[row].userProfileUrl)
         {
             // Load image asynchronously using SDWebImage
-            cell.userPic.sd_setImage(with: imageUrl)
-            
+            DispatchQueue.main.async {
+                cell.userPic.sd_setImage(with: imageUrl)
+            }
         }
-        
         return cell
     }
     
@@ -127,7 +125,22 @@ extension NewConversationsViewController:UITableViewDataSource,UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+      
+        let targerUserData =  filterUsers[indexPath.row]
         
+        let vc = ChatViewController(with: targerUserData.userEmail,with: targerUserData.userProfileUrl)
+        
+        vc.title = targerUserData.userName
+        vc.isNewConversation = true
+        vc.navigationItem.largeTitleDisplayMode = .never
+        vc.hidesBottomBarWhenPushed = true
+        searchController.searchBar.text = ""
+        navigationController?.pushViewController(vc, animated: true)
+        
+       
     }
     
 }
+
+/*
+*/

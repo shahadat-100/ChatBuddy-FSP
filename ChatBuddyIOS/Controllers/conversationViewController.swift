@@ -7,18 +7,19 @@
 
 import UIKit
 import FirebaseAuth
+import SDWebImage
+
 
 class conversationViewController: UIViewController {
 
     @IBOutlet weak var sidebarView: UIView!
-    @IBOutlet weak var emptyImgVIew: UIImageView!
-    @IBOutlet weak var emptyLvl: UILabel!
     @IBOutlet weak var uitableview: UITableView!
     @IBOutlet weak var sidebarConteinarview: UIView!
+    @IBOutlet weak var sidebarButton: UIBarButtonItem!
     
-    var user = ["Person1","Person2","Person1","Person2","Person1","Person2","Person1","Person2","Person1","Person2","Person1","Person2",]
+    var conversations = [ConversationList]()
     
-    var flag = false
+    var sideBar_flag = false
     
     
     override func viewDidLoad() {
@@ -26,21 +27,12 @@ class conversationViewController: UIViewController {
         
         
         sidebarView.isHidden = true
-        uitableview.isHidden = true
-        
-        
+
         uitableview.dataSource = self
         uitableview.delegate = self
         uitableview.register(UINib(nibName: "conversationTableViewCell", bundle: nil), forCellReuseIdentifier: "conversationTableViewCell")
         
-        
-        if user.count == 0 && user.isEmpty
-        {
-            emptyLvl.isHidden = true
-            emptyImgVIew.isHidden = true
-        }
-        
-        fatchConversation()
+        stratListenigForConversations()
         addGesture()
         
     }
@@ -48,22 +40,25 @@ class conversationViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
       
+        
         is_UserSingedIn()
+        stratListenigForConversations()
+
         
    
     }
 
     @IBAction func sidebarButton(_ sender: UIBarButtonItem) {
         
-        if !flag{
+        if !sideBar_flag{
            
             showSideBarViewWithAnimation()
-            flag = true
+            sideBar_flag = true
         }
         else
         {
             hideSideBarViewWithAnimation()
-            flag = false
+            sideBar_flag = false
         }
        
     }
@@ -73,10 +68,29 @@ class conversationViewController: UIViewController {
 extension conversationViewController
 {
     
-    private func fatchConversation()
+    private func stratListenigForConversations()
     {
-        uitableview.isHidden = false
+        guard let email = FirebaseAuth.Auth.auth().currentUser?.email else
+        {
+            return
+        }
+       let currentEmail = FirebaseDatabaseManager.shared.safeEmailAdress(_emailAddress: email)
+        
+        FirebaseDatabaseManager.shared.getAllFriendlist(for: currentEmail) { conversations in
+            guard let conversations = conversations, !conversations.isEmpty else
+            {
+                print("No conversations found for \(currentEmail) ")
+                return
+            }
+            self.conversations = conversations
+            DispatchQueue.main.async {
+                self.uitableview.reloadData()
+
+            }
+
+        }
     }
+    
     
     private func addGesture() {
         
@@ -93,7 +107,7 @@ extension conversationViewController
         // Check if the touch is outside the sidebar
         if !sidebarFrame.contains(touchLocation) {
             hideSideBarViewWithAnimation()
-            flag = false
+            sideBar_flag = false
         }
     }
 
@@ -112,7 +126,10 @@ extension conversationViewController
     
     // Function to animate showing the view from left to right
     private  func showSideBarViewWithAnimation() {
+        
+        sidebarButton.tintColor = .color1
         // Set the initial position off-screen to the left
+        
         sidebarView.transform = CGAffineTransform(translationX: -sidebarView.frame.width, y: 0)
         sidebarView.isHidden = false  // Make the view visible before animating
         
@@ -125,6 +142,9 @@ extension conversationViewController
 
     // Function to animate hiding the view from right to left
     private func hideSideBarViewWithAnimation() {
+       
+        sidebarButton.tintColor = .color
+        
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseIn, animations: {
             // Move the view off-screen to the left
             self.sidebarView.transform = CGAffineTransform(translationX: -self.sidebarView.frame.width, y: 0)
@@ -140,31 +160,42 @@ extension conversationViewController
 extension conversationViewController : UITableViewDataSource,UITableViewDelegate
 {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return user.count
+        return conversations.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = uitableview.dequeueReusableCell(withIdentifier: "conversationTableViewCell") as? conversationTableViewCell
         else {return UITableViewCell()}
-        cell.UserName.text = user[indexPath.row]
+        
+        let user = conversations[indexPath.row]
+        let lastIndx  =  user.conversation.count - 1
+        cell.UserName.text = user.name
+        cell.messeageLbl.text = user.conversation[lastIndx].latestMessage.text
+        cell.date.text = user.conversation[lastIndx].latestMessage.time
+        if let imageUrl = URL(string: user.profileUrl)
+        {
+            DispatchQueue.main.async {
+                cell.uimge.sd_setImage(with: imageUrl)
+            }
+        }
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return uitableview.frame.size.height / 7
+        return uitableview.frame.size.height / 8
     }
     
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChatViewController") as? ChatViewController else {return}
-//        //let vc = ChatViewController()
-//        vc.title = user[indexPath.row]
-//        vc.navigationItem.largeTitleDisplayMode = .never
-//        vc.hidesBottomBarWhenPushed = true
-//        navigationController?.pushViewController(vc, animated: true)
-//    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+      
+    }
     
     
     
     
 }
+
+
+/*  vc.navigationItem.largeTitleDisplayMode = .never
+ vc.hidesBottomBarWhenPushed = true
+ navigationController?.pushViewController(vc, animated: true)*/

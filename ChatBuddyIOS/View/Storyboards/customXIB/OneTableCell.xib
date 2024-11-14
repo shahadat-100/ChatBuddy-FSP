@@ -19,8 +19,8 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ay-Ir-c9x">
                         <rect key="frame" x="0.0" y="0.0" width="116.66666666666667" height="149"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="edit-info" translatesAutoresizingMaskIntoConstraints="NO" id="sEx-yi-ffs">
-                                <rect key="frame" x="35" y="51.333333333333329" width="46.666666666666657" height="46.333333333333329"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user-profile" translatesAutoresizingMaskIntoConstraints="NO" id="sEx-yi-ffs">
+                                <rect key="frame" x="23.333333333333329" y="39.666666666666664" width="70" height="69.666666666666686"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="sEx-yi-ffs" secondAttribute="height" multiplier="1:1" id="uR2-xL-czl"/>
                                 </constraints>
@@ -29,14 +29,14 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="sEx-yi-ffs" firstAttribute="centerX" secondItem="4ay-Ir-c9x" secondAttribute="centerX" id="FUi-4E-Af2"/>
-                            <constraint firstItem="sEx-yi-ffs" firstAttribute="width" secondItem="4ay-Ir-c9x" secondAttribute="width" multiplier="0.4" id="xC6-y3-Dqw"/>
+                            <constraint firstItem="sEx-yi-ffs" firstAttribute="width" secondItem="4ay-Ir-c9x" secondAttribute="width" multiplier="0.6" id="xC6-y3-Dqw"/>
                             <constraint firstItem="sEx-yi-ffs" firstAttribute="centerY" secondItem="4ay-Ir-c9x" secondAttribute="centerY" id="yLd-4f-AIE"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Profile" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qlE-eT-Yfb">
                         <rect key="frame" x="116.66666666666669" y="20" width="252" height="109"/>
                         <fontDescription key="fontDescription" name="Copperplate" family="Copperplate" pointSize="20"/>
-                        <color key="textColor" red="0.086274509799999996" green="0.58431372550000005" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="textColor" red="0.94509803920000002" green="0.97254901959999995" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -59,6 +59,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="edit-info" width="256" height="256"/>
+        <image name="user-profile" width="128" height="128"/>
     </resources>
 </document>
