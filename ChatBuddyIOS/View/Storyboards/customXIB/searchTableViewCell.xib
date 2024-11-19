@@ -48,6 +48,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="u6V-lW-7M3" secondAttribute="bottom" constant="10" id="BMD-b5-IwK"/>
                                     <constraint firstAttribute="trailing" secondItem="u6V-lW-7M3" secondAttribute="trailing" constant="20" id="cl9-Fx-ppn"/>
@@ -55,23 +56,37 @@
                                     <constraint firstItem="u6V-lW-7M3" firstAttribute="top" secondItem="e4H-s9-Ngc" secondAttribute="top" constant="20" id="xV6-mS-35H"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZqF-Nb-Ai7">
-                                <rect key="frame" x="0.0" y="93.333333333333329" width="344" height="33.666666666666671"/>
-                                <fontDescription key="fontDescription" name="Copperplate" family="Copperplate" pointSize="15"/>
-                                <color key="textColor" name="secondary"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Er-k9-EzM">
+                                <rect key="frame" x="0.0" y="88.333333333333329" width="364" height="58.666666666666671"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wz7-m4-yzU">
+                                        <rect key="frame" x="0.0" y="0.0" width="364" height="53.666666666666664"/>
+                                        <fontDescription key="fontDescription" name="Copperplate" family="Copperplate" pointSize="15"/>
+                                        <color key="textColor" name="secondary"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Wz7-m4-yzU" secondAttribute="trailing" id="3BP-Zb-trd"/>
+                                    <constraint firstItem="Wz7-m4-yzU" firstAttribute="leading" secondItem="4Er-k9-EzM" secondAttribute="leading" id="3Qj-ij-9rg"/>
+                                    <constraint firstItem="Wz7-m4-yzU" firstAttribute="top" secondItem="4Er-k9-EzM" secondAttribute="top" id="CFB-2w-wCl"/>
+                                    <constraint firstAttribute="bottom" secondItem="Wz7-m4-yzU" secondAttribute="bottom" constant="5" id="Lc0-Fp-sGb"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="4Er-k9-EzM" firstAttribute="top" secondItem="e4H-s9-Ngc" secondAttribute="bottom" id="3uK-fO-t8t"/>
                             <constraint firstItem="e4H-s9-Ngc" firstAttribute="leading" secondItem="Xwy-dD-o8V" secondAttribute="leading" id="Atx-tK-kn8"/>
-                            <constraint firstItem="ZqF-Nb-Ai7" firstAttribute="top" secondItem="e4H-s9-Ngc" secondAttribute="bottom" constant="5" id="DAr-kA-76d"/>
-                            <constraint firstAttribute="trailing" secondItem="ZqF-Nb-Ai7" secondAttribute="trailing" constant="20" id="EHj-Yw-OI1"/>
                             <constraint firstItem="e4H-s9-Ngc" firstAttribute="width" secondItem="Xwy-dD-o8V" secondAttribute="width" id="RRW-Rz-53u"/>
-                            <constraint firstAttribute="bottom" secondItem="ZqF-Nb-Ai7" secondAttribute="bottom" constant="20" id="bOK-ao-PGE"/>
-                            <constraint firstItem="ZqF-Nb-Ai7" firstAttribute="leading" secondItem="Xwy-dD-o8V" secondAttribute="leading" id="dgm-7A-4FT"/>
+                            <constraint firstAttribute="trailing" secondItem="4Er-k9-EzM" secondAttribute="trailing" id="Rrn-BE-ifs"/>
+                            <constraint firstItem="4Er-k9-EzM" firstAttribute="width" secondItem="Xwy-dD-o8V" secondAttribute="width" id="X1L-kC-smR"/>
+                            <constraint firstAttribute="bottom" secondItem="4Er-k9-EzM" secondAttribute="bottom" id="p2y-ze-A2w"/>
                             <constraint firstItem="e4H-s9-Ngc" firstAttribute="height" secondItem="Xwy-dD-o8V" secondAttribute="height" multiplier="0.6" id="p5V-Bf-Jo5"/>
                             <constraint firstItem="e4H-s9-Ngc" firstAttribute="top" secondItem="Xwy-dD-o8V" secondAttribute="top" id="pvK-Ja-YxO"/>
+                            <constraint firstItem="4Er-k9-EzM" firstAttribute="height" secondItem="Xwy-dD-o8V" secondAttribute="height" multiplier="0.4" id="q4A-eT-0dq"/>
+                            <constraint firstItem="4Er-k9-EzM" firstAttribute="leading" secondItem="Xwy-dD-o8V" secondAttribute="leading" id="sxi-bj-1pA"/>
                             <constraint firstAttribute="trailing" secondItem="e4H-s9-Ngc" secondAttribute="trailing" id="y20-ic-Xcy"/>
                         </constraints>
                     </view>
@@ -92,7 +107,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="userEmail" destination="ZqF-Nb-Ai7" id="gNH-Oe-rCO"/>
+                <outlet property="userEmail" destination="Wz7-m4-yzU" id="K38-od-5Gv"/>
                 <outlet property="userName" destination="u6V-lW-7M3" id="EA1-a2-AK4"/>
                 <outlet property="userPic" destination="Bz5-PY-Zhc" id="HYR-eg-wnL"/>
             </connections>

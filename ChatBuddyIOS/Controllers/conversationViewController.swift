@@ -45,9 +45,7 @@ class conversationViewController: UIViewController {
         
         is_UserSingedIn()
         stratListenigForConversations()
-        
-        
-        
+
     }
     
     @IBAction func sidebarButton(_ sender: UIBarButtonItem) {

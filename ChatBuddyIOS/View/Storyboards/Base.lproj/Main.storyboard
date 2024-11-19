@@ -907,27 +907,56 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="neT-9c-kZT">
                                         <rect key="frame" x="0.0" y="155.66666666666666" width="289.66666666666669" height="77.666666666666657"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YMb-Fq-Iir">
-                                                <rect key="frame" x="10" y="7.9999999999999982" width="269.66666666666669" height="21.333333333333329"/>
-                                                <fontDescription key="fontDescription" name="Copperplate" family="Copperplate" pointSize="20"/>
-                                                <color key="textColor" red="0.94509803921568625" green="0.97254901960784312" blue="0.99607843137254903" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="aryanbhiyab12233$gmail.com" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cf1-Uk-iFX">
-                                                <rect key="frame" x="10" y="39.333333333333343" width="269.66666666666669" height="17.333333333333329"/>
-                                                <fontDescription key="fontDescription" name="Copperplate" family="Copperplate" pointSize="17"/>
-                                                <color key="textColor" red="0.94509803920000002" green="0.97254901959999995" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fl8-0I-Yan">
+                                                <rect key="frame" x="0.0" y="0.0" width="289.66666666666669" height="46.666666666666664"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YyN-uS-wMh">
+                                                        <rect key="frame" x="0.0" y="0.0" width="289.66666666666669" height="46.666666666666664"/>
+                                                        <fontDescription key="fontDescription" name="Copperplate" family="Copperplate" pointSize="20"/>
+                                                        <color key="textColor" red="0.94509803920000002" green="0.97254901959999995" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="YyN-uS-wMh" secondAttribute="trailing" id="1Jb-uL-kao"/>
+                                                    <constraint firstAttribute="bottom" secondItem="YyN-uS-wMh" secondAttribute="bottom" id="4TH-i9-dUN"/>
+                                                    <constraint firstItem="YyN-uS-wMh" firstAttribute="leading" secondItem="Fl8-0I-Yan" secondAttribute="leading" id="brY-O1-bo6"/>
+                                                    <constraint firstItem="YyN-uS-wMh" firstAttribute="top" secondItem="Fl8-0I-Yan" secondAttribute="top" id="e9A-J8-AtY"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OFK-nG-Jwi">
+                                                <rect key="frame" x="0.0" y="46.666666666666657" width="289.66666666666669" height="31"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="email" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="69z-RN-sOE">
+                                                        <rect key="frame" x="0.0" y="0.0" width="289.66666666666669" height="31"/>
+                                                        <fontDescription key="fontDescription" name="Copperplate" family="Copperplate" pointSize="17"/>
+                                                        <color key="textColor" red="0.94509803920000002" green="0.97254901959999995" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="69z-RN-sOE" firstAttribute="leading" secondItem="OFK-nG-Jwi" secondAttribute="leading" id="Anh-r0-94o"/>
+                                                    <constraint firstAttribute="bottom" secondItem="69z-RN-sOE" secondAttribute="bottom" id="dJD-XG-tAH"/>
+                                                    <constraint firstAttribute="trailing" secondItem="69z-RN-sOE" secondAttribute="trailing" id="fYT-bh-29m"/>
+                                                    <constraint firstItem="69z-RN-sOE" firstAttribute="top" secondItem="OFK-nG-Jwi" secondAttribute="top" id="tGz-Ij-ad3"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="YMb-Fq-Iir" firstAttribute="top" secondItem="neT-9c-kZT" secondAttribute="top" constant="8" id="BaL-iU-U9E"/>
-                                            <constraint firstAttribute="trailing" secondItem="YMb-Fq-Iir" secondAttribute="trailing" constant="10" id="WCv-QA-Pw9"/>
-                                            <constraint firstItem="cf1-Uk-iFX" firstAttribute="trailing" secondItem="YMb-Fq-Iir" secondAttribute="trailing" id="WYa-xY-bjD"/>
-                                            <constraint firstItem="cf1-Uk-iFX" firstAttribute="top" secondItem="YMb-Fq-Iir" secondAttribute="bottom" constant="10" id="X4B-aF-S2z"/>
-                                            <constraint firstItem="YMb-Fq-Iir" firstAttribute="leading" secondItem="neT-9c-kZT" secondAttribute="leading" constant="10" id="bAl-ot-lQe"/>
-                                            <constraint firstItem="cf1-Uk-iFX" firstAttribute="leading" secondItem="YMb-Fq-Iir" secondAttribute="leading" id="yv9-XZ-EQ2"/>
+                                            <constraint firstAttribute="trailing" secondItem="OFK-nG-Jwi" secondAttribute="trailing" id="0D8-pv-MxJ"/>
+                                            <constraint firstAttribute="bottom" secondItem="OFK-nG-Jwi" secondAttribute="bottom" id="Jcg-yZ-yxL"/>
+                                            <constraint firstItem="Fl8-0I-Yan" firstAttribute="height" secondItem="neT-9c-kZT" secondAttribute="height" multiplier="0.6" id="Sal-a8-e4a"/>
+                                            <constraint firstItem="OFK-nG-Jwi" firstAttribute="leading" secondItem="neT-9c-kZT" secondAttribute="leading" id="e68-PU-2N0"/>
+                                            <constraint firstAttribute="trailing" secondItem="Fl8-0I-Yan" secondAttribute="trailing" id="hDz-Gr-k4b"/>
+                                            <constraint firstItem="OFK-nG-Jwi" firstAttribute="height" secondItem="neT-9c-kZT" secondAttribute="height" multiplier="0.4" id="i9z-9Q-WwD"/>
+                                            <constraint firstItem="OFK-nG-Jwi" firstAttribute="top" secondItem="Fl8-0I-Yan" secondAttribute="bottom" id="j3j-Zq-mbe"/>
+                                            <constraint firstItem="OFK-nG-Jwi" firstAttribute="width" secondItem="neT-9c-kZT" secondAttribute="width" id="kRD-XX-gLK"/>
+                                            <constraint firstItem="Fl8-0I-Yan" firstAttribute="leading" secondItem="neT-9c-kZT" secondAttribute="leading" id="rHi-50-yiK"/>
+                                            <constraint firstItem="Fl8-0I-Yan" firstAttribute="width" secondItem="neT-9c-kZT" secondAttribute="width" id="uST-cb-SkG"/>
+                                            <constraint firstItem="Fl8-0I-Yan" firstAttribute="top" secondItem="neT-9c-kZT" secondAttribute="top" id="v7P-25-rHX"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GYc-wl-7qc">
@@ -1000,8 +1029,8 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="email" destination="cf1-Uk-iFX" id="wWD-wy-Ed8"/>
-                        <outlet property="name" destination="YMb-Fq-Iir" id="x7a-Dx-AkQ"/>
+                        <outlet property="email" destination="69z-RN-sOE" id="iZ4-Hc-qGJ"/>
+                        <outlet property="name" destination="YyN-uS-wMh" id="dxK-fk-eRv"/>
                         <outlet property="oneCellTableView" destination="dmu-de-IhC" id="D6v-ys-yLX"/>
                         <outlet property="profileImg" destination="PGn-oM-4G0" id="YGx-Nb-37U"/>
                         <outlet property="uitbaleview" destination="uFa-31-r1P" id="ifc-sz-xdl"/>
@@ -1042,7 +1071,7 @@
         <image name="settings (2)" width="32" height="32"/>
         <image name="turn-off" width="32" height="32"/>
         <namedColor name="Color">
-            <color red="0.086000002920627594" green="0.58399999141693115" blue="0.90200001001358032" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.030999999493360519" green="0.35699999332427979" blue="0.6119999885559082" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

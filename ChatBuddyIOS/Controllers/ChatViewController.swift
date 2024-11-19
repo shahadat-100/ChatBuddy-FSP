@@ -12,6 +12,7 @@ import FirebaseAuth
 import IQKeyboardManagerSwift
 import SDWebImage
 import PhotosUI
+import Translation
 
 // Define Message and Sender types
 struct Message: MessageType {
@@ -74,6 +75,8 @@ class ChatViewController: MessagesViewController {
     
     private var messages = [Message]()
     private var selfSender: Sender?
+    
+    private var showTranslation:Bool = false
     
     init( email: String, _url: String, userName:String) {
         
@@ -225,6 +228,7 @@ extension ChatViewController: MessagesDataSource, MessagesLayoutDelegate, Messag
     
     
     func configureMediaMessageImageView(_ imageView: UIImageView, for message: any MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
+      
         guard let message = message as? Message else
         {
             return
@@ -247,8 +251,8 @@ extension ChatViewController: MessagesDataSource, MessagesLayoutDelegate, Messag
     
     func didTapMessage(in cell: MessageCollectionViewCell) {
         
-       // view.endEditing(true)
-       // showOptionsMenu(for: cell)
+        view.endEditing(true)
+        showOptionsMenu(for: cell)
         
     }
     
@@ -289,6 +293,32 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
 
 extension ChatViewController {
     
+    
+    private func showOptionsMenu(for cell: MessageCollectionViewCell) {
+
+//        guard let indexPath = self.messagesCollectionView.indexPath(for: cell) else {
+//            print("index not found")
+//            return
+//        }
+//        let selectedMessage = self.messages[indexPath.section]
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+
+
+        alert.addAction(UIAlertAction(title: "Translate", style: .default, handler: { _ in
+           
+            self.showTranslation = true
+        }))
+        
+
+        alert.addAction(UIAlertAction(title: "Remove Message", style: .destructive, handler: { _ in
+
+            print("tapped reaction")
+        }))
+
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+
+        present(alert, animated: true, completion: nil)
+    }
     
     private func setUpinputBarButton()
     {
@@ -344,7 +374,7 @@ extension ChatViewController {
                    let date = latestMessageDict["_date"] as? String,
                    let message = latestMessageDict["_message"] as? String
                 // ,let isRead = latestMessageDict["_isRead"] as? Bool
-                {
+                  {
                     let dateString = date  + " " + time
                     guard let date = self.convertToDate(from: dateString) else {
                         print("Failed to convert date.")
@@ -523,33 +553,7 @@ extension ChatViewController:PHPickerViewControllerDelegate{
 
 
 
-//    private func showOptionsMenu(for cell: MessageCollectionViewCell) {
-//
-//        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-//
-//
-//        alert.addAction(UIAlertAction(title: "Translate", style: .default, handler: { _ in
-//
-//            guard let indexPath = self.messagesCollectionView.indexPath(for: cell) else {
-//                print("index not found")
-//                return
-//            }
-//            let selectedMessage = self.messages[indexPath.section]
-//
-//            // Translate the selected message
-//            //self.translateMessage(message: selectedMessage)
-//
-//        }))
-//
-//        alert.addAction(UIAlertAction(title: "Remove Message", style: .destructive, handler: { _ in
-//
-//            print("tapped reaction")
-//        }))
-//
-//        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-//
-//        present(alert, animated: true, completion: nil)
-//    }
+
     
 //    private func  translateMessage(message: Message?)
 //    {
@@ -577,4 +581,4 @@ extension ChatViewController:PHPickerViewControllerDelegate{
 //        default:
 //            break
 //        }
-//    }
+  //  }
