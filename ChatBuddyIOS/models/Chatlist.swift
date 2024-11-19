@@ -18,10 +18,14 @@ class LattesMessage {
 // Model for a single conversation, holding the latest message
 class Conversation {
     let id: String
+    let senderEmail:String
+    let type :String
     let latestMessage: LattesMessage
     
-    init(id: String, latestMessage: LattesMessage) {
+    init(id: String, senderEmail: String, type: String, latestMessage: LattesMessage) {
         self.id = id
+        self.senderEmail = senderEmail
+        self.type = type
         self.latestMessage = latestMessage
     }
 }
@@ -29,14 +33,14 @@ class Conversation {
 // Model for a conversation list with friend details and multiple conversations
 class ConversationList {
     let name: String
-    let otherUserEmail: String
+    let UserEmail: String
     let profileUrl: String
     let conversation: [Conversation] // A list of conversations (could be one or more)
     
     
     init(name: String, otherUserEmail: String, profileUrl: String, conversation: [Conversation]) {
         self.name = name
-        self.otherUserEmail = otherUserEmail
+        self.UserEmail = otherUserEmail
         self.profileUrl = profileUrl
         self.conversation = conversation
     }

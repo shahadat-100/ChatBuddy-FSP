@@ -127,8 +127,7 @@ extension NewConversationsViewController:UITableViewDataSource,UITableViewDelega
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
       
         let targerUserData =  filterUsers[indexPath.row]
-        
-        let vc = ChatViewController(with: targerUserData.userEmail,with: targerUserData.userProfileUrl)
+        let vc = ChatViewController(email: targerUserData.userEmail, _url: targerUserData.userProfileUrl, userName: targerUserData.userName)
         
         vc.title = targerUserData.userName
         vc.isNewConversation = true

@@ -11,56 +11,60 @@ import SDWebImage
 
 
 class conversationViewController: UIViewController {
-
+    
     @IBOutlet weak var sidebarView: UIView!
     @IBOutlet weak var uitableview: UITableView!
     @IBOutlet weak var sidebarConteinarview: UIView!
     @IBOutlet weak var sidebarButton: UIBarButtonItem!
     
-    var conversations = [ConversationList]()
+    var conversationslist = [ConversationList]()
+    
     
     var sideBar_flag = false
     
+    private var tapGesture: UITapGestureRecognizer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
+        
         sidebarView.isHidden = true
-
+        
         uitableview.dataSource = self
         uitableview.delegate = self
         uitableview.register(UINib(nibName: "conversationTableViewCell", bundle: nil), forCellReuseIdentifier: "conversationTableViewCell")
         
         stratListenigForConversations()
-        addGesture()
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-      
+        
         
         is_UserSingedIn()
         stratListenigForConversations()
-
         
-   
+        
+        
     }
-
+    
     @IBAction func sidebarButton(_ sender: UIBarButtonItem) {
         
         if !sideBar_flag{
-           
+            
+            addGesture()
             showSideBarViewWithAnimation()
             sideBar_flag = true
         }
         else
         {
             hideSideBarViewWithAnimation()
+            removeGesture()
             sideBar_flag = false
         }
-       
+        
     }
     
 }
@@ -74,7 +78,7 @@ extension conversationViewController
         {
             return
         }
-       let currentEmail = FirebaseDatabaseManager.shared.safeEmailAdress(_emailAddress: email)
+        let currentEmail = FirebaseDatabaseManager.shared.safeEmailAdress(_emailAddress: email)
         
         FirebaseDatabaseManager.shared.getAllFriendlist(for: currentEmail) { conversations in
             guard let conversations = conversations, !conversations.isEmpty else
@@ -82,24 +86,28 @@ extension conversationViewController
                 print("No conversations found for \(currentEmail) ")
                 return
             }
-            self.conversations = conversations
+            self.conversationslist = conversations
             DispatchQueue.main.async {
                 self.uitableview.reloadData()
-
+                
             }
-
+            
         }
+        
+        
     }
     
     
     private func addGesture() {
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
-        self.view.addGestureRecognizer(tapGesture)
+        tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
+                if let gesture = tapGesture {
+                    self.view.addGestureRecognizer(gesture)
+                }
     }
-
+    
     @objc func handleTapGesture(_ gesture: UITapGestureRecognizer) {
-       
+        
         // Get the touch location within the main view
         let touchLocation = gesture.location(in: self.view)
         let sidebarFrame = self.sidebarView.frame
@@ -107,10 +115,18 @@ extension conversationViewController
         // Check if the touch is outside the sidebar
         if !sidebarFrame.contains(touchLocation) {
             hideSideBarViewWithAnimation()
+            removeGesture()
             sideBar_flag = false
         }
     }
-
+    
+    private func removeGesture() {
+            // Remove the gesture recognizer
+            if let gesture = tapGesture {
+                self.view.removeGestureRecognizer(gesture)
+            }
+        }
+    
     private func is_UserSingedIn()
     {
         if FirebaseAuth.Auth.auth().currentUser == nil
@@ -139,10 +155,10 @@ extension conversationViewController
             self.navigationItem.title = nil
         })
     }
-
+    
     // Function to animate hiding the view from right to left
     private func hideSideBarViewWithAnimation() {
-       
+        
         sidebarButton.tintColor = .color
         
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseIn, animations: {
@@ -160,17 +176,36 @@ extension conversationViewController
 extension conversationViewController : UITableViewDataSource,UITableViewDelegate
 {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return conversations.count
+        return conversationslist.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = uitableview.dequeueReusableCell(withIdentifier: "conversationTableViewCell") as? conversationTableViewCell
         else {return UITableViewCell()}
         
-        let user = conversations[indexPath.row]
+        let user = conversationslist[indexPath.row]
         let lastIndx  =  user.conversation.count - 1
         cell.UserName.text = user.name
-        cell.messeageLbl.text = user.conversation[lastIndx].latestMessage.text
+        if user.conversation[lastIndx].type == "photo"
+        {
+            if user.conversation[lastIndx].senderEmail == user.UserEmail{
+                cell.messeageLbl.text = "\(user.name) sent a photo"
+            }
+            else
+            {
+                cell.messeageLbl.text = "You sent a photo"
+            }
+        }
+        else
+        {
+            if user.conversation[lastIndx].senderEmail == user.UserEmail{
+                cell.messeageLbl.text = user.conversation[lastIndx].latestMessage.text
+            }
+            else
+            {
+                cell.messeageLbl.text = "You : \(user.conversation[lastIndx].latestMessage.text)"
+            }
+        }
         cell.date.text = user.conversation[lastIndx].latestMessage.time
         if let imageUrl = URL(string: user.profileUrl)
         {
@@ -187,15 +222,18 @@ extension conversationViewController : UITableViewDataSource,UITableViewDelegate
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-      
+        
+        let user = conversationslist[indexPath.row]
+        let vc = ChatViewController(email: user.UserEmail, _url: user.profileUrl, userName: user.name)
+        
+        vc.title = user.name
+        vc.navigationItem.largeTitleDisplayMode = .never
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
+        
     }
-    
-    
-    
     
 }
 
 
-/*  vc.navigationItem.largeTitleDisplayMode = .never
- vc.hidesBottomBarWhenPushed = true
- navigationController?.pushViewController(vc, animated: true)*/
+/*  */

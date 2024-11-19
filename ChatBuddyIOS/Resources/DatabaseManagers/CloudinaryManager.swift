@@ -18,15 +18,15 @@ class CloudinaryManager {
         cloudinary = CLDCloudinary(configuration: config)
     }
 
-    func uploadImage(_ image: UIImage, completion: @escaping (String?, Error?) -> Void) {
+    func uploadImage(_ image: UIImage,folderName:String, completion: @escaping (String?, Error?) -> Void) {
        
-        guard let imageData = image.jpegData(compressionQuality: 0.6) else {
+        guard let imageData = image.jpegData(compressionQuality: 0.7) else {
             completion(nil, NSError())
             return
         }
 
         let params = CLDUploadRequestParams()
-        params.setFolder("userProfilePictures")
+        params.setFolder(folderName)
 
         
         cloudinary.createUploader().upload(data: imageData, uploadPreset: "chatBuddy-preset", params: params)
@@ -40,9 +40,9 @@ class CloudinaryManager {
                         print("iamge successfully saved in cloudinary ")
                     } else {
                         completion(nil, NSError())
-                    }
                 }
             }
+        }
     }
 
 }

@@ -120,7 +120,7 @@ extension photoAddViewController:PHPickerViewControllerDelegate
             
             //for image
             result.itemProvider.loadObject(ofClass: UIImage.self) { item,error in
-                guard let image = item as? UIImage else { return }
+                guard let image = item as? UIImage,error == nil  else { return }
                
                 DispatchQueue.main.async {
                     if self.flag
@@ -133,7 +133,7 @@ extension photoAddViewController:PHPickerViewControllerDelegate
                 
                 guard let emailAddess = self.emailAddess else {return}
                 
-                self.cloudinaryManager.uploadImage(image) {imageUrl, error in
+                self.cloudinaryManager.uploadImage(image,folderName: "userProfilePictures") {imageUrl, error in
                     if let error = error {
                         print("Image upload failed in Cloudinary: \(error.localizedDescription)")
                         return

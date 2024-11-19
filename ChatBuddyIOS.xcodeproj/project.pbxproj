@@ -36,6 +36,7 @@
 		EF41B5762CE0C53D0077BF8D /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = EF41B5752CE0C53D0077BF8D /* SDWebImage */; };
 		EF41B5782CE0C53D0077BF8D /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = EF41B5772CE0C53D0077BF8D /* SDWebImageMapKit */; };
 		EF41B57B2CE0C5D40077BF8D /* Cloudinary in Frameworks */ = {isa = PBXBuildFile; productRef = EF41B57A2CE0C5D40077BF8D /* Cloudinary */; };
+		EF4751A62CEB6F8D008B4A38 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = EF4751A52CEB6F8D008B4A38 /* Alamofire */; };
 		EF9738402CDE55E5004D501D /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = EF97383F2CDE55E5004D501D /* JGProgressHUD */; };
 		EFC8AC4D2CDE3D260088E20D /* MessageKit in Frameworks */ = {isa = PBXBuildFile; productRef = EFC8AC4C2CDE3D260088E20D /* MessageKit */; };
 		EFF2CEA12CD90A4700E347B2 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = EFF2CEA02CD90A4700E347B2 /* IQKeyboardManagerSwift */; };
@@ -98,6 +99,7 @@
 				EF9738402CDE55E5004D501D /* JGProgressHUD in Frameworks */,
 				EF3EE85B2CDA884E003D94E8 /* FirebaseDatabase in Frameworks */,
 				EF41B5762CE0C53D0077BF8D /* SDWebImage in Frameworks */,
+				EF4751A62CEB6F8D008B4A38 /* Alamofire in Frameworks */,
 				EF3EE8572CDA884E003D94E8 /* FirebaseCore in Frameworks */,
 				EF3EE8552CDA884E003D94E8 /* FirebaseAuthCombine-Community in Frameworks */,
 				EF3EE8632CDA884E003D94E8 /* FirebaseFunctions in Frameworks */,
@@ -177,6 +179,7 @@
 				EF41B5752CE0C53D0077BF8D /* SDWebImage */,
 				EF41B5772CE0C53D0077BF8D /* SDWebImageMapKit */,
 				EF41B57A2CE0C5D40077BF8D /* Cloudinary */,
+				EF4751A52CEB6F8D008B4A38 /* Alamofire */,
 			);
 			productName = ChatBuddyIOS;
 			productReference = EFF2CE872CD909CE00E347B2 /* ChatBuddyIOS.app */;
@@ -214,6 +217,7 @@
 				EF97383E2CDE55E5004D501D /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
 				EF41B5742CE0C53D0077BF8D /* XCRemoteSwiftPackageReference "SDWebImage" */,
 				EF41B5792CE0C5D40077BF8D /* XCRemoteSwiftPackageReference "cloudinary_ios" */,
+				EF4751A42CEB6F8D008B4A38 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = EFF2CE882CD909CE00E347B2 /* Products */;
@@ -475,6 +479,14 @@
 				minimumVersion = 5.1.0;
 			};
 		};
+		EF4751A42CEB6F8D008B4A38 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.10.1;
+			};
+		};
 		EF97383E2CDE55E5004D501D /* XCRemoteSwiftPackageReference "JGProgressHUD" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/JonasGessner/JGProgressHUD.git";
@@ -646,6 +658,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EF41B5792CE0C5D40077BF8D /* XCRemoteSwiftPackageReference "cloudinary_ios" */;
 			productName = Cloudinary;
+		};
+		EF4751A52CEB6F8D008B4A38 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EF4751A42CEB6F8D008B4A38 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 		EF97383F2CDE55E5004D501D /* JGProgressHUD */ = {
 			isa = XCSwiftPackageProductDependency;
