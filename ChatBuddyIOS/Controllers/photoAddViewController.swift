@@ -45,9 +45,7 @@ class photoAddViewController: UIViewController {
     @IBAction func nextButton(_ sender: UIButton) {
         
         self.navigationController?.dismiss(animated: true)
-        if let tabBarController = self.tabBarController {
-                tabBarController.selectedIndex = 0 // Assuming the Chat tab is at index 0
-            }
+       
     }
     
 }

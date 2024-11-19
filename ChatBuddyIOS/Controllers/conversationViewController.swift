@@ -35,18 +35,19 @@ class conversationViewController: UIViewController {
         uitableview.delegate = self
         uitableview.register(UINib(nibName: "conversationTableViewCell", bundle: nil), forCellReuseIdentifier: "conversationTableViewCell")
         
-        stratListenigForConversations()
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        
         is_UserSingedIn()
         stratListenigForConversations()
 
     }
+    
+    
+    
     
     @IBAction func sidebarButton(_ sender: UIBarButtonItem) {
         
@@ -82,6 +83,11 @@ extension conversationViewController
             guard let conversations = conversations, !conversations.isEmpty else
             {
                 print("No conversations found for \(currentEmail) ")
+                self.conversationslist.removeAll()
+                DispatchQueue.main.async {
+                    self.uitableview.reloadData()
+                    
+                }
                 return
             }
             self.conversationslist = conversations
