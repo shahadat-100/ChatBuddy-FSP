@@ -68,7 +68,7 @@ struct Media : MediaItem
 
 class ChatViewController: MessagesViewController {
     
-    public var isNewConversation: Bool = false
+    //  public var isNewConversation: Bool = false
     public var otherUserEmail: String
     public var otherUserPRofileUrl : String
     public var friendName : String
@@ -190,6 +190,7 @@ extension ChatViewController: MessagesDataSource, MessagesLayoutDelegate, Messag
     
     
     func configureAvatarView(_ avatarView: AvatarView, for message: any MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
+        
         guard let sender = message.sender as? Sender else { return}
         
         if sender.senderId == otherUserEmail
@@ -221,14 +222,14 @@ extension ChatViewController: MessagesDataSource, MessagesLayoutDelegate, Messag
                     avatarView.sd_setImage(with: url)
                 }
             }
-  
+            
         }
         
     }
     
     
     func configureMediaMessageImageView(_ imageView: UIImageView, for message: any MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
-      
+        
         guard let message = message as? Message else
         {
             return
@@ -249,12 +250,12 @@ extension ChatViewController: MessagesDataSource, MessagesLayoutDelegate, Messag
         
     }
     
-    func didTapMessage(in cell: MessageCollectionViewCell) {
-        
-        view.endEditing(true)
-        showOptionsMenu(for: cell)
-        
-    }
+    //    func didTapMessage(in cell: MessageCollectionViewCell) {
+    //
+    //        view.endEditing(true)
+    //        showOptionsMenu(for: cell)
+    //
+    //    }
     
 }
 
@@ -294,45 +295,49 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
 extension ChatViewController {
     
     
-    private func showOptionsMenu(for cell: MessageCollectionViewCell) {
-
-//        guard let indexPath = self.messagesCollectionView.indexPath(for: cell) else {
-//            print("index not found")
-//            return
-//        }
-//        let selectedMessage = self.messages[indexPath.section]
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-
-
-        alert.addAction(UIAlertAction(title: "Translate", style: .default, handler: { _ in
-           
-            self.showTranslation = true
-        }))
-        
-
-        alert.addAction(UIAlertAction(title: "Remove Message", style: .destructive, handler: { _ in
-
-            print("tapped reaction")
-        }))
-
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-
-        present(alert, animated: true, completion: nil)
-    }
+    //    private func showOptionsMenu(for cell: MessageCollectionViewCell) {
+    //
+    ////        guard let indexPath = self.messagesCollectionView.indexPath(for: cell) else {
+    ////            print("index not found")
+    ////            return
+    ////        }
+    ////        let selectedMessage = self.messages[indexPath.section]
+    //        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+    //
+    //
+    //        alert.addAction(UIAlertAction(title: "Translate", style: .default, handler: { _ in
+    //
+    //            self.showTranslation = true
+    //        }))
+    //
+    //
+    //        alert.addAction(UIAlertAction(title: "Remove Message", style: .destructive, handler: { _ in
+    //
+    //            print("tapped reaction")
+    //        }))
+    //
+    //        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+    //
+    //        present(alert, animated: true, completion: nil)
+    //    }
     
+    // button for send photo
     private func setUpinputBarButton()
     {
         let button = InputBarButtonItem()
+        
         let buttonSize = CGSize(width: view.frame.width * 0.08, height: view.frame.width * 0.10) // 8% of the screen width
         button.setSize(buttonSize, animated: false)
+        
         button.setImage(UIImage(named: "gallery"), for: .normal)
         button.addTarget(self, action:#selector(openGalery), for: .touchUpInside)
+        
         messageInputBar.setLeftStackViewWidthConstant(to: view.frame.width * 0.15, animated: false)
         messageInputBar.setStackViewItems([button], forStack: .left, animated: false)
         messageInputBar.inputTextView.placeholder = "Type a message..."
     }
     
-
+    
     @objc func openGalery()
     {
         var config = PHPickerConfiguration()
@@ -343,6 +348,17 @@ extension ChatViewController {
         present(pickerVc, animated: true)
     }
     
+    
+    private func createDynamicSize() -> CGSize{
+        // Use a dynamic width based on the screen width
+        let screenWidth = UIScreen.main.bounds.width
+        
+        let width = screenWidth * 0.6 // 60% of screen width
+        let height = width * 3 / 4    // Maintain a 4:3 aspect ratio
+        let dynamicSize = CGSize(width: width, height: height)
+        
+        return dynamicSize
+    }
     
     
     private func listenForMessages()
@@ -374,7 +390,7 @@ extension ChatViewController {
                    let date = latestMessageDict["_date"] as? String,
                    let message = latestMessageDict["_message"] as? String
                 // ,let isRead = latestMessageDict["_isRead"] as? Bool
-                  {
+                {
                     let dateString = date  + " " + time
                     guard let date = self.convertToDate(from: dateString) else {
                         print("Failed to convert date.")
@@ -425,16 +441,7 @@ extension ChatViewController {
         }
     }
     
-    private func createDynamicSize() -> CGSize{
-        // Use a dynamic width based on the screen width
-        let screenWidth = UIScreen.main.bounds.width
-        
-        let width = screenWidth * 0.6 // 60% of screen width
-        let height = width * 3 / 4    // Maintain a 4:3 aspect ratio
-        let dynamicSize = CGSize(width: width, height: height)
-        
-        return dynamicSize
-    }
+    
     
     
     private  func convertToDate(from dateString: String) -> Date? {
@@ -511,20 +518,17 @@ extension ChatViewController:PHPickerViewControllerDelegate{
                     FirebaseDatabaseManager.shared.createNewConversation(with: self.otherUserEmail,name: self.friendName,profileURL:self.otherUserPRofileUrl,firstMessage: message)
                     {
                         success in
-                           if success
-                           {
-                               print("Message sent successfully")
-                               self.listenForMessages()
-                               
-                           }
-                           else
-                           {
-                               print("Message not sent!")
-                           }
-                       
+                        if success
+                        {
+                            print("Message sent successfully")
+                            self.listenForMessages()
+                            
+                        }
+                        else
+                        {
+                            print("Message not sent!")
+                        }
                     }
-                    
-  
                 }
             }
         }
@@ -554,7 +558,7 @@ extension ChatViewController:PHPickerViewControllerDelegate{
 
 
 
-    
+
 //    private func  translateMessage(message: Message?)
 //    {
 //
@@ -581,4 +585,4 @@ extension ChatViewController:PHPickerViewControllerDelegate{
 //        default:
 //            break
 //        }
-  //  }
+//  }

@@ -345,15 +345,18 @@ extension FirebaseDatabaseManager {
                 "profileUrl": otherUserUrl,
                 "conversations": [newConversation]
             ]
+            
             // Access the FriendList (or create an empty one if it doesn't exist)
             var friendList = userNode["FriendList"] as? [[String: Any]] ?? []
             var friendExists = false
+            
             // Manually loop through the friend list to check if this friend exists
             for i in 0..<friendList.count {
                 // Access the current friend's details
                 if let friendInfo = friendList[i][otherUserName] as? [String: Any],
                    let friendEmail = friendInfo["email"] as? String,
                    friendEmail == otherUserEmail {
+                    
                     // Friend exists, so add the new conversation to this friend's conversation list
                     var conversations = friendInfo["conversations"] as? [[String: Any]] ?? []
                     conversations.append(newConversation)
@@ -497,247 +500,7 @@ extension FirebaseDatabaseManager {
         }
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-//    public func updateMessage(for friendName: String, otherUserEmail: String, conversationId: String, updatedMessage: String, isRead: Bool, completion: @escaping (Bool) -> Void) {
-//        // Get the current user's email, ensuring they're logged in
-//        guard let email = FirebaseAuth.Auth.auth().currentUser?.email else {
-//            print("Current user not found")
-//            completion(false)
-//            return
-//        }
-//        
-//        // Convert email to a safe format to use as a key
-//        let currentUserEmail = safeEmailAdress(_emailAddress: email)
-//        let userRef = self.database_ref.child("users").child(currentUserEmail).child("FriendList").child(friendName).child("conversations").child(conversationId)
-//        
-//        // Prepare the updated message data
-//        let updatedMessageData: [String: Any] = [
-//            "_message": updatedMessage,
-//            "_time": formatTime(Date()),  // Current time
-//            "_date": formatDate(Date()),  // Current date
-//            "_isRead": isRead
-//        ]
-//        
-//        // Update the conversation's latest message in Firebase
-//        userRef.updateChildValues(["_latestMessage": updatedMessageData]) { error, _ in
-//            if let error = error {
-//                print("Failed to update message:", error)
-//                completion(false)
-//            } else {
-//               // print("Message updated successfully!")
-//                
-//                self.fetchUserName(with: currentUserEmail) { name in
-//                
-//                    guard let name = name else
-//                    {return}
-//                    
-//                    self.updateRepicentMessage(for: name, currentUser: otherUserEmail, otherUserEmail: currentUserEmail, conversationId: conversationId, updatedMessage: updatedMessage, isRead: isRead) { success in
-//                        
-//                        if success
-//                        {
-//                            completion(true)
-//                            return
-//                        }
-//                        else
-//                        {
-//                            completion(false)
-//                            return
-//                        }
-//                        
-//                    }
-//                }
-//                
-//            }
-//        }
-//    }
-//    
-//    private func updateRepicentMessage(for friendName: String,currentUser:String, otherUserEmail: String, conversationId: String, updatedMessage: String, isRead: Bool, completion: @escaping (Bool) -> Void) {
-//        // Get the current user's email, ensuring they're logged in
-//       
-//        let userRef = self.database_ref.child("users").child(currentUser).child("FriendList").child(friendName).child("conversations").child(conversationId)
-//        
-//        // Prepare the updated message data
-//        let updatedMessageData: [String: Any] = [
-//            "_message": updatedMessage,
-//            "_time": formatTime(Date()),  // Current time
-//            "_date": formatDate(Date()),  // Current date
-//            "_isRead": isRead
-//        ]
-//        
-//        // Update the conversation's latest message in Firebase
-//        userRef.updateChildValues(["_latestMessage": updatedMessageData]) { error, _ in
-//            if let error = error {
-//                print("Failed to update message:", error)
-//                completion(false)
-//            } else {
-//                print("Message updated successfully!")
-//                completion(true)
-//            }
-//        }
-//    }
-
-    
 }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    //
-    //    private func finishCreatingConversation(with id: String,name:String ,profileURL:String,firstMessage: Message, completion: @escaping (Bool) -> Void) {
-    //        guard let email = FirebaseAuth.Auth.auth().currentUser?.email else {
-    //            print("Current user not found")
-    //            completion(false)
-    //            return
-    //        }
-    //
-    //        let currentUserEmail = safeEmailAdress(_emailAddress: email)
-    //        let messageContent = getMessageContent(from: firstMessage)
-    //        let messageDate = formatDate(firstMessage.sentDate)
-    //
-    //        let collectionMessage: [String: Any] = [
-    //            "_id": firstMessage.messageId,
-    //            "_name":name,
-    //            "_profileURl":profileURL,
-    //            "_type": firstMessage.kind.messageKindString(),
-    //            "_content": messageContent,
-    //            "_date": messageDate,
-    //            "_senderEmail": currentUserEmail,
-    //            "_isRead": false
-    //        ]
-    //
-    //        let value: [String: Any] = [
-    //            "_message": [collectionMessage]
-    //        ]
-    //
-    //
-    //        database_ref.child("\(id)").setValue(value) { error, _ in
-    //            completion(error == nil)
-    //        }
-    //    }
-    //
-    //    /// Fetches and returns all conversations for the user with the passed-in email
-    //    public func getAllConversations(for email: String, completion: @escaping ([Conversation]?) -> Void) {
-    //
-    //        database_ref.child("users").child("\(email)/conversations").observe(.value) { snapshot in
-    //
-    //            guard let value = snapshot.value as? [[String: Any]] else {
-    //                completion(nil)
-    //                return
-    //            }
-    //
-    //            var conversations: [Conversation] = []
-    //
-    //            for dictionary in value {
-    //                guard let name = dictionary["_name"] as? String,
-    //                      let otherUserEmail = dictionary["_otherUserEmail"] as? String,
-    //                      let id = dictionary["_id"] as? String,
-    //                      let profileURl = dictionary["_profileURl"] as? String,
-    //                      let latestMessageDict = dictionary["_latestMassage"] as? [String: Any],
-    //                      let date = latestMessageDict["_data"] as? String,
-    //                      let message = latestMessageDict["_message"] as? String,
-    //                      let isRead = latestMessageDict["_isRead"] as? Bool else {
-    //
-    //                    continue
-    //                }
-    //
-    //                let latestMessage = LattesMessage(date: date, text: message, is_read: isRead)
-    //                let conversation = Conversation(id: id, name: name, otherUserEmail: otherUserEmail, ProfileUrl: profileURl, lattestMessage: latestMessage)
-    //
-    //               // print("converstatin id   \(id)___\(message)")
-    //                conversations.append(conversation)
-    //              //  print(conversation)
-    //            }
-    //          // print(conversations)
-    //           completion(conversations)
-    //        }
-    //    }
-    //
-    //    /// Get all messages for the given conversation
-    //    public func getAllMessagesForConversation(with id: String, completion: @escaping (String, Error) -> Void) {
-    //        // Implementation here
-    //    }
-    //
-    //    /// Send a message to a target conversation
-    //    public func sendMessage(to conversation: String, message: Message, completion: @escaping (Bool) -> Void) {
-    //        // Implementation here
-    //    }
-    //}
-    //
-    //
-    //
-    ///*
-    //
-    //users
-    //  └── {currentUserEmail}
-    //      └── conversations
-    //          └── {conversationId}
-    //              ├── _id
-    //              ├── _otherUserEmail
-    //              └── _latestMessage
-    //                  ├── _date
-    //                  ├── _message
-    //                  └── _is_read
-    //              └── _messageCount
-    //
-    //
-    //conversations
-    //  └── {conversationId}
-    //      └── _messages
-    //          └── {messageId}
-    //              ├── _id
-    //              ├── _type
-    //              ├── _content
-    //              ├── _date
-    //              ├── _senderEmail
-    //              └── _isRead
-    //
-    //*/
+
+
+

@@ -130,7 +130,6 @@ extension NewConversationsViewController:UITableViewDataSource,UITableViewDelega
         let vc = ChatViewController(email: targerUserData.userEmail, _url: targerUserData.userProfileUrl, userName: targerUserData.userName)
         
         vc.title = targerUserData.userName
-        vc.isNewConversation = true
         vc.navigationItem.largeTitleDisplayMode = .never
         vc.hidesBottomBarWhenPushed = true
         searchController.searchBar.text = ""
