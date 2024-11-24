@@ -16,10 +16,12 @@ import Translation
 
 // Define Message and Sender types
 struct Message: MessageType {
+    
     public var sender: SenderType
     public var messageId: String
     public var sentDate: Date
     public var kind: MessageKind
+    
 }
 
 extension MessageKind {
@@ -170,6 +172,8 @@ extension ChatViewController: MessagesDataSource, MessagesLayoutDelegate, Messag
     }
     
     
+    
+    
     func backgroundColor(for message: any MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
         
         if isFromCurrentSender(message: message)
@@ -250,13 +254,19 @@ extension ChatViewController: MessagesDataSource, MessagesLayoutDelegate, Messag
         
     }
     
-    //    func didTapMessage(in cell: MessageCollectionViewCell) {
-    //
-    //        view.endEditing(true)
-    //        showOptionsMenu(for: cell)
-    //
-    //    }
-    
+//    func didTapMessage(in cell: MessageCollectionViewCell) {
+//         
+//        view.endEditing(true)
+//        guard let indexPath = messagesCollectionView.indexPath(for: cell) else {
+//                   print("IndexPath not found!")
+//                   return
+//               }
+//          //  let message = messages[indexPath.section]
+//    
+//        }
+// 
+
+
 }
 
 extension ChatViewController: InputBarAccessoryViewDelegate {
@@ -290,6 +300,7 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
             }
         }
     }
+    
 }
 
 extension ChatViewController {
@@ -586,3 +597,5 @@ extension ChatViewController:PHPickerViewControllerDelegate{
 //            break
 //        }
 //  }
+
+
