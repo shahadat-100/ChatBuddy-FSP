@@ -12,7 +12,7 @@ import FirebaseAuth
 import IQKeyboardManagerSwift
 import SDWebImage
 import PhotosUI
-import Translation
+//import Translation
 
 // Define Message and Sender types
 struct Message: MessageType {
